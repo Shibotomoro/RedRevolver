@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Player
   - 
   - 
   - 
@@ -42,17 +42,17 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 4067510235
-    locked: 0
-  - name: Decoration
-    uniqueID: 1281622379
+    uniqueID: 1079626355
     locked: 0
   - name: Platforms
-    uniqueID: 1711290167
+    uniqueID: 1469740375
+    locked: 0
+  - name: Decoration
+    uniqueID: 1487194055
     locked: 0
   - name: Player
-    uniqueID: 1249639405
+    uniqueID: 3655729671
     locked: 0
   - name: Foreground Decoration
-    uniqueID: 2710182383
+    uniqueID: 490862617
     locked: 0
