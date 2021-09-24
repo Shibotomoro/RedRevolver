@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
   - Ground
-  - Player
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -42,17 +42,20 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 1079626355
+    uniqueID: 2094666921
+    locked: 0
+  - name: Middle Background
+    uniqueID: 198265071
+    locked: 0
+  - name: Waypoint
+    uniqueID: 2766707355
     locked: 0
   - name: Platforms
-    uniqueID: 1469740375
-    locked: 0
-  - name: Decoration
-    uniqueID: 1487194055
+    uniqueID: 3362661231
     locked: 0
   - name: Player
-    uniqueID: 3655729671
+    uniqueID: 3834787517
     locked: 0
-  - name: Foreground Decoration
-    uniqueID: 490862617
+  - name: Foreground
+    uniqueID: 3076091069
     locked: 0
