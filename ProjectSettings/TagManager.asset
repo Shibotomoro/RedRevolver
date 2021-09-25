@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Level
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Damageable
   - 
   - 
   - 
@@ -48,11 +49,11 @@ TagManager:
   - name: Middle Background
     uniqueID: 198265071
     locked: 0
-  - name: Waypoint
-    uniqueID: 2766707355
-    locked: 0
   - name: Platforms
     uniqueID: 3362661231
+    locked: 0
+  - name: Enemy
+    uniqueID: 3412844019
     locked: 0
   - name: Player
     uniqueID: 3834787517

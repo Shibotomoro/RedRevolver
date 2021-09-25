@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     #region Variables
 
     private float RawMovementInputDirectionX;
+    private float RawMovementInputDirectionY;
     private float MovementInputDirectionX;
     private float MovementInputDirectionY;
     private float jumpTimer;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private float wallJumpTimer;
     private float dashTimeLeft;
     private float lastImageXpos;
+    private float lastImageYpos;
     private float lastDash = -100f;
     private float coyoteCounter;
 
@@ -63,12 +65,13 @@ public class PlayerController : MonoBehaviour
     public float jumpTimerSet = 0.15f;
     public float turnTimerSet = 0.1f;
     public float wallJumpTimerSet = 0.5f;
+    public float coyoteTime = 0.2f;
+
     public float dashTime = 0.2f;
-    public float dashSpeed = 50.0f;
-    public float diagonalDashSpeedModifier = 0.7f;
+    public float dashSpeed = 20.0f;
+    public float dashSpeedY = 20.0f;
     public float distanceBetweenImages = 0.1f;
     public float dashCooldown = 2.5f;
-    public float coyoteTime = 0.2f;
 
     public Vector2 wallJumpDirection;
 
@@ -112,9 +115,9 @@ public class PlayerController : MonoBehaviour
     private void CheckInput()
     {
         RawMovementInputDirectionX = Input.GetAxisRaw("Horizontal");
+        RawMovementInputDirectionY = Input.GetAxisRaw("Vertical");
         MovementInputDirectionX = Input.GetAxis("Horizontal");
         MovementInputDirectionY = Input.GetAxis("Vertical");
-
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -304,11 +307,14 @@ public class PlayerController : MonoBehaviour
             {
                 canMove = false;
                 canFlip = false;
-
-                RB.velocity = Vector2.zero;
-                Vector2 dashSpeedMagnitude = new Vector2(MovementInputDirectionX, MovementInputDirectionY);
-
-                RB.velocity += dashSpeedMagnitude.normalized * dashSpeed * diagonalDashSpeedModifier;
+                if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
+                {
+                    RB.velocity = new Vector2(dashSpeed * facingDirection, 0.0f);
+                }
+                else
+                {
+                    RB.velocity = new Vector2(dashSpeed * MovementInputDirectionX, dashSpeedY * MovementInputDirectionY);
+                }
 
                 dashTimeLeft -= Time.deltaTime;
 
@@ -316,6 +322,11 @@ public class PlayerController : MonoBehaviour
                 {
                     PlayerAfterImagePool.Instance.GetFromPool();
                     lastImageXpos = transform.position.x;
+                }
+                if (Mathf.Abs(transform.position.y - lastImageYpos) > distanceBetweenImages)
+                {
+                    PlayerAfterImagePool.Instance.GetFromPool();
+                    lastImageYpos = transform.position.y;
                 }
             }
 
@@ -430,7 +441,7 @@ public class PlayerController : MonoBehaviour
             lastDash = Time.time;
             PlayerAfterImagePool.Instance.GetFromPool();
             lastImageXpos = transform.position.x;
-
+            lastImageYpos = transform.position.y;
             amountOfDashLeft--;
         }
     }
