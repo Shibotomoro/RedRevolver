@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private bool checkJumpMultiplier;
     private bool hasWallJumped;
 
+    public Transform firePoint;
+    public GameObject bulletPrefab;
     private Rigidbody2D RB;
     private Animator Anim;
 
@@ -165,6 +167,11 @@ public class PlayerController : MonoBehaviour
             {
                 AttemptToDash();
             }
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
         }
     }
 
@@ -426,6 +433,11 @@ public class PlayerController : MonoBehaviour
 
             amountOfDashLeft--;
         }
+    }
+
+    private void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     #endregion
