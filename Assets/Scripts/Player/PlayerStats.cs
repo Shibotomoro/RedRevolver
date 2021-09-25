@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float maxHealth = 50.0f;
+
+    private float currentHealth;
+
+    private GameManager GM;
+
+    private void Start()
     {
-        
+        currentHealth = maxHealth;
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DecreaseHealth(float amount)
     {
-        
+        currentHealth -= amount;
+        if (currentHealth <= 0.0f)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        GM.Respawn();
+        Destroy(gameObject);
     }
 }
