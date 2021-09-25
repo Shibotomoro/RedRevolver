@@ -165,12 +165,12 @@ MonoBehaviour:
   jumpTimerSet: 0.15
   turnTimerSet: 0.1
   wallJumpTimerSet: 0.5
-  dashTime: 0.2
-  dashSpeed: 30
-  diagonalDashSpeedModifier: 0.7
+  coyoteTime: 0.15
+  dashTime: 0.3
+  dashSpeed: 20
+  dashSpeedY: 15
   distanceBetweenImages: 0.2
   dashCooldown: 1.5
-  coyoteTime: 0.15
   wallJumpDirection: {x: 1, y: 2}
 --- !u!50 &757472521907516542
 Rigidbody2D:

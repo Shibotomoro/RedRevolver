@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private bool canDash;
     private bool checkJumpMultiplier;
     private bool hasWallJumped;
+    private bool waitForDash;
 
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -114,10 +115,13 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
-        RawMovementInputDirectionX = Input.GetAxisRaw("Horizontal");
-        RawMovementInputDirectionY = Input.GetAxisRaw("Vertical");
-        MovementInputDirectionX = Input.GetAxis("Horizontal");
-        MovementInputDirectionY = Input.GetAxis("Vertical");
+        if (!waitForDash)
+        {
+            RawMovementInputDirectionX = Input.GetAxisRaw("Horizontal");
+            RawMovementInputDirectionY = Input.GetAxisRaw("Vertical");
+            MovementInputDirectionX = Input.GetAxis("Horizontal");
+            MovementInputDirectionY = Input.GetAxis("Vertical");
+        }
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -132,14 +136,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Horizontal") && isTouchingWall)
+        if (!waitForDash)
         {
-            if (!isGrounded && RawMovementInputDirectionX != facingDirection)
+            if (Input.GetButtonDown("Horizontal") && isTouchingWall)
             {
-                canMove = false;
-                canFlip = false;
+                if (!isGrounded && RawMovementInputDirectionX != facingDirection)
+                {
+                    canMove = false;
+                    canFlip = false;
 
-                turnTimer = turnTimerSet;
+                    turnTimer = turnTimerSet;
+                }
             }
         }
 
@@ -297,6 +304,8 @@ public class PlayerController : MonoBehaviour
 
         if (isDashing)
         {
+            Vector2 directionalInput = new Vector2(MovementInputDirectionX, MovementInputDirectionY);
+            waitForDash = true;
             CameraShake.Instance.ShakeCamera(2f, .2f);
             if (!isGrounded)
             {
@@ -313,7 +322,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    RB.velocity = new Vector2(dashSpeed * MovementInputDirectionX, dashSpeedY * MovementInputDirectionY);
+                    RB.velocity = new Vector2(dashSpeed * RawMovementInputDirectionX, dashSpeedY * RawMovementInputDirectionY);
                 }
 
                 dashTimeLeft -= Time.deltaTime;
@@ -335,6 +344,7 @@ public class PlayerController : MonoBehaviour
                 isDashing = false;
                 canMove = true;
                 canFlip = true;
+                waitForDash = false;
             }
         }
     }
