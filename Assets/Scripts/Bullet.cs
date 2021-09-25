@@ -6,6 +6,7 @@ using Cinemachine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
+    public int damage = 50;
 
     public Rigidbody2D RB;
 
@@ -17,6 +18,11 @@ public class Bullet : MonoBehaviour
     {
         if (hitInfo.gameObject.tag != "Level" && hitInfo.gameObject.tag != "Player")
         {
+            Enemy enemy = hitInfo.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
             Destroy(gameObject);
         }
     }
