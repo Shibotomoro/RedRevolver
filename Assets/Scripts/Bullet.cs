@@ -19,6 +19,11 @@ public class Bullet : MonoBehaviour
     {
         if (hitInfo.gameObject.tag != "Level" && hitInfo.gameObject.tag != "Player")
         {
+            EnemyDeath enemyDeath = hitInfo.GetComponent<EnemyDeath>();
+            if (enemyDeath != null)
+            {
+                enemyDeath.TakeDamage(damage);
+            }
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null)
             {

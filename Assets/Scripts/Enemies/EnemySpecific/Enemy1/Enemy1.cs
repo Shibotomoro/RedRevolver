@@ -23,6 +23,7 @@ public class Enemy1 : Entity
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
 
+
     public override void Start()
     {
         base.Start();

@@ -38294,6 +38294,7 @@ GameObject:
   - component: {fileID: 1051890494}
   - component: {fileID: 1051890497}
   - component: {fileID: 1051890496}
+  - component: {fileID: 1051890499}
   - component: {fileID: 1051890498}
   - component: {fileID: 1051890495}
   m_Layer: 7
@@ -38440,6 +38441,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1051890499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051890493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe94d4f2a5d304c49a1f8c071f4b0315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1107284088
 GameObject:
   m_ObjectHideFlags: 0
@@ -38575,7 +38588,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172479954}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -38647,7 +38660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172479954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.73, y: -1.03, z: 0}
+  m_LocalPosition: {x: 3.73, y: -2.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38712,7 +38725,7 @@ GameObject:
   - component: {fileID: 1198881326}
   m_Layer: 0
   m_Name: ChargeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38734,6 +38747,8 @@ MonoBehaviour:
   ledgeCheck: {fileID: 1360692506}
   playerCheck: {fileID: 5674643}
   groundCheck: {fileID: 1107284089}
+  health: 50
+  deathEffect: {fileID: 2157804832923225388, guid: 7159efb5478dbe945a6ce5d1912312ad, type: 3}
   idleStateData: {fileID: 11400000, guid: db716bb04c5c5d44890da856b8b197df, type: 2}
   moveStateData: {fileID: 11400000, guid: 193fbb6473f52144ea7e6cafe9c879cb, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 7ccf35f3284c1814fb8f3e8e5fcc0032, type: 2}
