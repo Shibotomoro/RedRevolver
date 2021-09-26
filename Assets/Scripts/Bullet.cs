@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+//hi this is ted
 public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
