@@ -10,6 +10,22 @@ public class PlayerStats : MonoBehaviour
 
     private GameManager GM;
 
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        //Check if player collides with flying enemy
+
+        if (col.gameObject.tag.Equals("Enemy"))
+        {
+            Die();
+        }
+    }
+
+    private void Update()
+    {
+
+    }
+
     private void Start()
     {
         currentHealth = maxHealth;

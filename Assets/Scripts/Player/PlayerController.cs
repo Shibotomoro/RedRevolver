@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     public float turnTimerSet = 0.1f;
     public float wallJumpTimerSet = 0.5f;
     public float coyoteTime = 0.2f;
+    public float diagonalDashMultiplier = 0.7f;
 
     public float dashTime = 0.2f;
     public float dashSpeed = 20.0f;
@@ -319,6 +320,10 @@ public class PlayerController : MonoBehaviour
                 if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
                 {
                     RB.velocity = new Vector2(dashSpeed * facingDirection, 0.0f);
+                }
+                else if (Mathf.Abs(RawMovementInputDirectionX) == 1 && Mathf.Abs(RawMovementInputDirectionY) == 1)
+                {
+                    RB.velocity = new Vector2(dashSpeed * RawMovementInputDirectionX * diagonalDashMultiplier, dashSpeedY * RawMovementInputDirectionY * diagonalDashMultiplier);
                 }
                 else
                 {
