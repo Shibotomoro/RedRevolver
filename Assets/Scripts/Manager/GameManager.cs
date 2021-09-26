@@ -5,40 +5,56 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Transform respawnPoint;
-    [SerializeField] private GameObject player;
-    [SerializeField] private float respawnTime;
+    public static GameManager instance;
 
-    private float respawnTimeStart;
+    public Transform respawnPoint;
+    public GameObject playerPrefab;
 
-    private bool respawn;
+    public CinemachineVirtualCamera CVC;
 
-    private CinemachineVirtualCamera CVC;
-
-    private void Start()
+    private void Awake()
     {
-        Invoke("InitCamera", 0.1f);
-    }
-
-    private void InitCamera()
-    {
-        CVC = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        instance = this;
     }
 
     public void Respawn()
     {
-        respawnTimeStart = Time.time;
-        respawn = true;
+        GameObject Player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        CVC.Follow = Player.transform;
     }
 
-    private void CheckRespawn()
-    {
-        if (Time.time >= respawnTimeStart + respawnTime && respawn)
-        {
-            var playerTemp = Instantiate(player, respawnPoint);
-            CVC.m_Follow = playerTemp.transform;
-            respawn = false;
-        }
-    }
+
+
+    //private float respawnTimeStart;
+
+    //private bool respawn;
+
+    //private CinemachineVirtualCamera CVC;
+
+    //private void Start()
+    //{
+    //    Invoke("InitCamera", 1f);
+    //}
+
+    //private void InitCamera()
+    //{
+    //    CVC = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+    //}
+
+    //public void Respawn()
+    //{
+    //    respawnTimeStart = Time.time;
+    //    respawn = true;
+    //}
+
+    //private void CheckRespawn()
+    //{
+    //    if (Time.time >= respawnTimeStart + respawnTime && respawn)
+    //    {
+    //        var playerTemp = Instantiate(player, respawnPoint);
+    //        CVC.m_Follow = playerTemp.transform;
+    //        respawn = false;
+    //    }
+    //}
 
 }
