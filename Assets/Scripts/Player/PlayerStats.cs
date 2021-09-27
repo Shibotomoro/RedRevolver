@@ -32,6 +32,11 @@ public class PlayerStats : MonoBehaviour
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+    private void Damage(AttackDetails attackDetails)
+    {
+        DecreaseHealth(attackDetails.damageAmount);
+    }
+
     public void DecreaseHealth(float amount)
     {
         currentHealth -= amount;
