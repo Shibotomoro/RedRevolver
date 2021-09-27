@@ -38297,6 +38297,7 @@ GameObject:
   - component: {fileID: 1051890499}
   - component: {fileID: 1051890498}
   - component: {fileID: 1051890495}
+  - component: {fileID: 1051890500}
   m_Layer: 7
   m_Name: Alive
   m_TagString: Enemy
@@ -38453,6 +38454,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe94d4f2a5d304c49a1f8c071f4b0315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1051890500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051890493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75707ad732c4c8545a6879bd8801f3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  deathEffect: {fileID: 2157804832923225388, guid: 7159efb5478dbe945a6ce5d1912312ad, type: 3}
 --- !u!1 &1107284088
 GameObject:
   m_ObjectHideFlags: 0
@@ -38747,8 +38762,6 @@ MonoBehaviour:
   ledgeCheck: {fileID: 1360692506}
   playerCheck: {fileID: 5674643}
   groundCheck: {fileID: 1107284089}
-  health: 50
-  deathEffect: {fileID: 2157804832923225388, guid: 7159efb5478dbe945a6ce5d1912312ad, type: 3}
   idleStateData: {fileID: 11400000, guid: db716bb04c5c5d44890da856b8b197df, type: 2}
   moveStateData: {fileID: 11400000, guid: 193fbb6473f52144ea7e6cafe9c879cb, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 7ccf35f3284c1814fb8f3e8e5fcc0032, type: 2}
