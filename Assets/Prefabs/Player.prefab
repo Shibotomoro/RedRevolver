@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 757472522601754473}
   bulletPrefab: {fileID: 7095577491254302719, guid: aa6d97a1c9c56da46b193ef58bce336e, type: 3}
+  bulletBehindPrefab: {fileID: 7095577491254302719, guid: aaa8a27157b9d754b879df18169dc28e, type: 3}
   groundCheck: {fileID: 757472521600440362}
   wallCheck: {fileID: 757472522576536877}
   whatIsGround:

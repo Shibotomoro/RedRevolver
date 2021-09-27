@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 
 //hi this is ted
-public class Bullet : MonoBehaviour
+public class BulletBehind : MonoBehaviour
 {
     public float speed = 20f;
     public int damage = 50;
@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        RB.velocity = transform.right * speed;
+        RB.velocity = -transform.right * speed;
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
