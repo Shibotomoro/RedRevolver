@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject bulletBehindPrefab;
     private Rigidbody2D RB;
     private Animator Anim;
 
@@ -170,6 +171,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Dash"))
         {
+            ShootBehind();
             if (!isGrounded)
             {
                 AttemptToDash();
@@ -464,6 +466,11 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootBehind()
+    {
+        Instantiate(bulletBehindPrefab, firePoint.position, firePoint.rotation);
     }
 
     #endregion
