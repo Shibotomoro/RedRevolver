@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a627799be24853342b47b53f4c66bd30, type: 3}
   m_Name: E2_RangedAttackStateData
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3848666644021117080, guid: 5c4fa5cc1c7234548811805238565341, type: 3}
+  projectile: {fileID: 4106515826752609065, guid: 5c824b98e83ce6f4998b556cc553425b, type: 3}
   projectileDamage: 10
   projectileSpeed: 12
   projectileTravelDistance: 8
