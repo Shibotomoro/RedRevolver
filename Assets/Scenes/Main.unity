@@ -40257,9 +40257,33 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+      propertyPath: bulletUpPrefab
+      value: 
+      objectReference: {fileID: 7095577491254302719, guid: 16f6a6faf24c6034089185f5ba12d5de, type: 3}
+    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+      propertyPath: bulletDownPrefab
+      value: 
+      objectReference: {fileID: 7095577491254302719, guid: aaad4078ec844f945a87bdaf38ec5b01, type: 3}
+    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: bulletBehindPrefab
       value: 
       objectReference: {fileID: 7095577491254302719, guid: aaa8a27157b9d754b879df18169dc28e, type: 3}
+    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+      propertyPath: bulletUpLeftPrefab
+      value: 
+      objectReference: {fileID: 7095577491254302719, guid: d20ee81d363b4b34483f59538997cf8b, type: 3}
+    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+      propertyPath: bulletUpRightPrefab
+      value: 
+      objectReference: {fileID: 7095577491254302719, guid: 38a19ab0d795b2e42a1be603f2564093, type: 3}
+    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+      propertyPath: bulletDownLeftPrefab
+      value: 
+      objectReference: {fileID: 7095577491254302719, guid: eb03018ce0cc0fc479d91d3a9a7b8230, type: 3}
+    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+      propertyPath: bulletDownRightPrefab
+      value: 
+      objectReference: {fileID: 7095577491254302719, guid: 704682fd39940af4f9348dc56ec1a816, type: 3}
     - target: {fileID: 757472521907516540, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_Name
       value: Player

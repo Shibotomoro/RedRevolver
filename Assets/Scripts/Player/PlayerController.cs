@@ -45,6 +45,13 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject bulletBehindPrefab;
+    public GameObject bulletDownPrefab;
+    public GameObject bulletUpPrefab;
+    public GameObject bulletUpRightPrefab;
+    public GameObject bulletDownRightPrefab;
+    public GameObject bulletUpLeftPrefab;
+    public GameObject bulletDownLeftPrefab;
+
     private Rigidbody2D RB;
     private Animator Anim;
 
@@ -171,7 +178,43 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Dash"))
         {
-            ShootBehind();
+            if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 1)
+            {
+                ShootDown();
+            }
+            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == -1)
+            {
+                ShootUp();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 1)
+            {
+                ShootDownLeft();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == -1)
+            {
+                ShootUpLeft();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 1)
+            {
+                ShootDownRight();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == -1)
+            {
+                ShootUpRight();
+            }
+
             if (!isGrounded)
             {
                 AttemptToDash();
@@ -471,6 +514,36 @@ public class PlayerController : MonoBehaviour
     private void ShootBehind()
     {
         Instantiate(bulletBehindPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootDown()
+    {
+        Instantiate(bulletDownPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootUp()
+    {
+        Instantiate(bulletUpPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootUpRight()
+    {
+        Instantiate(bulletUpRightPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootDownRight()
+    {
+        Instantiate(bulletDownRightPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootDownLeft()
+    {
+        Instantiate(bulletDownLeftPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootUpLeft()
+    {
+        Instantiate(bulletUpLeftPrefab, firePoint.position, firePoint.rotation);
     }
 
     #endregion
