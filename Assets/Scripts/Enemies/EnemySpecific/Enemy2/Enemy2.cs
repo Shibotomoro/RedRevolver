@@ -67,10 +67,22 @@ public class Enemy2 : Entity
         }
     }
 
+    public override bool CheckPlayerInMinAggroRange()
+    {
+        return Physics2D.OverlapCircle(playerCheck.position, entityData.minAggroCircleRadius, entityData.whatIsPlayer);
+    }
+
+    public override bool CheckPlayerInMaxAggroRange()
+    {
+        return Physics2D.OverlapCircle(playerCheck.position, entityData.maxAggroCircleRadius, entityData.whatIsPlayer);
+    }
+
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
 
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+        Gizmos.DrawWireSphere(playerCheck.position, entityData.minAggroCircleRadius);
+        Gizmos.DrawWireSphere(playerCheck.position, entityData.maxAggroCircleRadius);
     }
 }

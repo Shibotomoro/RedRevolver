@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
-    [SerializeField] private Transform playerCheck;
+    [SerializeField] public Transform playerCheck;
     [SerializeField] private Transform groundCheck;
 
     private float currentHealth;
