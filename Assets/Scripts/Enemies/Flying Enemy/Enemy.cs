@@ -40,6 +40,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.gameObject.tag == "Projectile")
+        {
+            Die();
+        }
+    }
+
     private void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
