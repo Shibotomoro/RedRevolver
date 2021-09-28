@@ -148,6 +148,12 @@ MonoBehaviour:
   firePoint: {fileID: 757472522601754473}
   bulletPrefab: {fileID: 7095577491254302719, guid: aa6d97a1c9c56da46b193ef58bce336e, type: 3}
   bulletBehindPrefab: {fileID: 7095577491254302719, guid: aaa8a27157b9d754b879df18169dc28e, type: 3}
+  bulletDownPrefab: {fileID: 7095577491254302719, guid: aaad4078ec844f945a87bdaf38ec5b01, type: 3}
+  bulletUpPrefab: {fileID: 7095577491254302719, guid: 16f6a6faf24c6034089185f5ba12d5de, type: 3}
+  bulletUpRightPrefab: {fileID: 7095577491254302719, guid: 38a19ab0d795b2e42a1be603f2564093, type: 3}
+  bulletDownRightPrefab: {fileID: 7095577491254302719, guid: 704682fd39940af4f9348dc56ec1a816, type: 3}
+  bulletUpLeftPrefab: {fileID: 7095577491254302719, guid: d20ee81d363b4b34483f59538997cf8b, type: 3}
+  bulletDownLeftPrefab: {fileID: 7095577491254302719, guid: eb03018ce0cc0fc479d91d3a9a7b8230, type: 3}
   groundCheck: {fileID: 757472521600440362}
   wallCheck: {fileID: 757472522576536877}
   whatIsGround:
