@@ -18,6 +18,8 @@ public class D_Entity : ScriptableObject
 
     public float minAggroDistance = 3f;
     public float maxAggroDistance = 4f;
+    public float minAggroCircleRadius = 4f;
+    public float maxAggroCircleRadius = 5f;
 
     public float closeRangeActionDistance = 1f;
 
