@@ -11,10 +11,13 @@ public class BulletDownRight : MonoBehaviour
 
     public Rigidbody2D RB;
 
+    private float moveX = 1f;
+    private float moveY = -1f;
+
     private void Start()
     {
-        RB.velocity = transform.right * speed;
-        RB.velocity = -transform.up * speed;
+        Vector3 moveDir = new Vector3(moveX, moveY).normalized;
+        RB.velocity = moveDir * speed;
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
