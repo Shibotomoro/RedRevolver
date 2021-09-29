@@ -506,6 +506,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Shoot Directions
+
     private void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
