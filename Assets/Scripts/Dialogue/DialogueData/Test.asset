@@ -13,14 +13,8 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dialogue:
-  - 'This is placeholder dialogue!
+  - Shoutout to Red Revolver Dev Team.
+  - 'This is McCain''s Font!
 
-    Hello.'
-  - 'This is our second dialogue.
-
-    Goodbye.'
-  responses:
-  - responseText: Yes
-    dialogueObject: {fileID: 11400000, guid: 8152573aa7957d64f86b9890643783be, type: 2}
-  - responseText: No
-    dialogueObject: {fileID: 11400000, guid: 59ca6dd814aa57a4fbe08a969867820b, type: 2}
+    Wow!'
+  responses: []
