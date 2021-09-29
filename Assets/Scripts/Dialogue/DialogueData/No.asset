@@ -10,17 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eebc41b7fac54fc4d94098bcd57bed24, type: 3}
-  m_Name: Test
+  m_Name: No
   m_EditorClassIdentifier: 
   dialogue:
-  - 'This is placeholder dialogue!
-
-    Hello.'
-  - 'This is our second dialogue.
-
-    Goodbye.'
-  responses:
-  - responseText: Yes
-    dialogueObject: {fileID: 11400000, guid: 8152573aa7957d64f86b9890643783be, type: 2}
-  - responseText: No
-    dialogueObject: {fileID: 11400000, guid: 59ca6dd814aa57a4fbe08a969867820b, type: 2}
+  - You Said No
+  responses: []

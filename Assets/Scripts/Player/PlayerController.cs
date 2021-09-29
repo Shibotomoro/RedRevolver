@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletUpLeftPrefab;
     public GameObject bulletDownLeftPrefab;
 
+    [SerializeField] private DialogueUI dialogueUI;
+
     private Rigidbody2D RB;
     private Animator Anim;
 
@@ -103,6 +105,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dialogueUI.IsOpen)
+        {
+            return;
+        }
         CheckInput();
         CheckMovementDirection();
         UpdateAnimations();
@@ -111,6 +117,7 @@ public class PlayerController : MonoBehaviour
         CheckJump();
         CheckIfCanDash();
         CheckDash();
+        CheckDialogue();
     }
 
     private void FixedUpdate()
@@ -387,6 +394,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckDialogue()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && isGrounded && !isMoving)
+        {
+            Interactable?.Interact(this);
+        }
+    }
+
     #endregion
 
     #region Other Functions
@@ -512,6 +527,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public DialogueUI DialogueUI => dialogueUI;
+
+    public IInteractable Interactable { get; set; }
 
     #endregion
 

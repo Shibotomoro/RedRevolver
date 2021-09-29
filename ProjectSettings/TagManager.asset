@@ -20,7 +20,7 @@ TagManager:
   - Damageable
   - Player
   - Obstacle
-  - Interactable
+  - NPC
   - 
   - 
   - 
