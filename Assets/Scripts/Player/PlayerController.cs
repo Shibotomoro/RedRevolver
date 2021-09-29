@@ -178,42 +178,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Dash"))
         {
-            if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
-            {
-                ShootBehind();
-            }
-            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 0)
-            {
-                ShootBehind();
-            }
-            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 0)
-            {
-                ShootBehind();
-            }
-            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 1)
-            {
-                ShootDown();
-            }
-            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == -1)
-            {
-                ShootUp();
-            }
-            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 1)
-            {
-                ShootDownLeft();
-            }
-            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == -1)
-            {
-                ShootUpLeft();
-            }
-            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 1)
-            {
-                ShootDownRight();
-            }
-            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == -1)
-            {
-                ShootUpRight();
-            }
 
             if (!isGrounded)
             {
@@ -503,6 +467,42 @@ public class PlayerController : MonoBehaviour
             lastImageXpos = transform.position.x;
             lastImageYpos = transform.position.y;
             amountOfDashLeft--;
+            if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 1)
+            {
+                ShootDown();
+            }
+            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == -1)
+            {
+                ShootUp();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 1)
+            {
+                ShootDownLeft();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == -1)
+            {
+                ShootUpLeft();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 1)
+            {
+                ShootDownRight();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == -1)
+            {
+                ShootUpRight();
+            }
         }
     }
 
