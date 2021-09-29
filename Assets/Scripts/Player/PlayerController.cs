@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private int facingDirection = 1;
     private int lastWallJumpDirection;
     private int amountOfDashLeft;
+    public int amountOfBullets = 6;
 
     private bool isFacingRight = true;
     private bool isMoving;
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
         wallJumpDirection.Normalize();
-        amountOfDashLeft = amountOfDash;
+        amountOfDashLeft = amountOfBullets;
     }
 
     // Update is called once per frame
@@ -179,19 +180,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Dash"))
         {
 
-            if (!isGrounded)
+            if (!isGrounded && amountOfBullets > 0)
             {
                 AttemptToDash();
+                amountOfBullets -= 1;
             }
-            else if (Time.time >= (lastDash + dashCooldown))
+            else if (Time.time >= (lastDash + dashCooldown) && amountOfBullets > 0)
             {
                 AttemptToDash();
+                amountOfBullets -= 1;
             }
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if(amountOfBullets > 0)
+            {
+                Shoot();
+                amountOfBullets -= 1;
+            }          
         }
     }
 
@@ -458,7 +465,7 @@ public class PlayerController : MonoBehaviour
 
     private void AttemptToDash()
     {
-        if (canDash)
+        if (canDash && amountOfBullets > 0)
         {
             isDashing = true;
             dashTimeLeft = dashTime;
