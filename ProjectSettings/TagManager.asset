@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Projectile
   - Ammo
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Damageable
   - Player
   - Obstacle
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -59,6 +60,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3412844019
+    locked: 0
+  - name: NPC
+    uniqueID: 492527347
     locked: 0
   - name: Player
     uniqueID: 3834787517
