@@ -107,7 +107,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460179779
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58225b167518a7b4d9ad2557c70290b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amountOfBullets: 6
   firePoint: {fileID: 757472522601754473}
   bulletPrefab: {fileID: 7095577491254302719, guid: aa6d97a1c9c56da46b193ef58bce336e, type: 3}
   bulletBehindPrefab: {fileID: 7095577491254302719, guid: aaa8a27157b9d754b879df18169dc28e, type: 3}
@@ -154,6 +155,7 @@ MonoBehaviour:
   bulletDownRightPrefab: {fileID: 7095577491254302719, guid: 704682fd39940af4f9348dc56ec1a816, type: 3}
   bulletUpLeftPrefab: {fileID: 7095577491254302719, guid: d20ee81d363b4b34483f59538997cf8b, type: 3}
   bulletDownLeftPrefab: {fileID: 7095577491254302719, guid: eb03018ce0cc0fc479d91d3a9a7b8230, type: 3}
+  dialogueUI: {fileID: 2921620507629947279, guid: 352a6d86f1951e642b9fe4c8ff87a1e3, type: 3}
   groundCheck: {fileID: 757472521600440362}
   wallCheck: {fileID: 757472522576536877}
   whatIsGround:

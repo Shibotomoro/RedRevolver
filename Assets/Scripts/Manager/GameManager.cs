@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         CVC.Follow = Player.transform;
     }
 
-
-
     //private float respawnTimeStart;
 
     //private bool respawn;
