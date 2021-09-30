@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
         wallJumpDirection.Normalize();
-        amountOfDashLeft = amountOfBullets;
     }
 
     // Update is called once per frame
@@ -109,6 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        amountOfDashLeft = amountOfBullets;
         CheckInput();
         CheckMovementDirection();
         UpdateAnimations();
