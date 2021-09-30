@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     public float coyoteTime = 0.2f;
     public float diagonalDashMultiplier = 0.7f;
 
-    public float dashTime = 0.2f;
+    public float dashTime = 0.3f;
     public float dashSpeed = 20.0f;
     public float dashSpeedY = 20.0f;
     public float distanceBetweenImages = 0.1f;
@@ -338,6 +338,7 @@ public class PlayerController : MonoBehaviour
 
             if (dashTimeLeft > 0)
             {
+                isTouchingWall = false;
                 canMove = false;
                 canFlip = false;
                 if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
