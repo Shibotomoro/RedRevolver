@@ -6,10 +6,9 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50.0f;
 
-    public static float currentHealth;
-    public static int fruitCollected = 0;
+    private float currentHealth;
 
-    public GameManager GM;
+    private GameManager GM;
 
 
     private void OnCollisionEnter2D(Collision2D col)
