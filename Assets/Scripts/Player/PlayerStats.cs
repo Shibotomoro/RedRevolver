@@ -6,7 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50.0f;
 
-    private float currentHealth;
+    public static float currentHealth;
+    public static int fruitsCollected = 0;
 
     private GameManager GM;
 
