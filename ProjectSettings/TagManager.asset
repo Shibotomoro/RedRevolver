@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Level
   - Enemy
+  - Projectile
+  - Ammo
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -15,9 +18,9 @@ TagManager:
   - UI
   - Ground
   - Damageable
-  - 
-  - 
-  - 
+  - Player
+  - Obstacle
+  - NPC
   - 
   - 
   - 
@@ -52,8 +55,14 @@ TagManager:
   - name: Platforms
     uniqueID: 3362661231
     locked: 0
+  - name: Obstacles
+    uniqueID: 1109664013
+    locked: 0
   - name: Enemy
     uniqueID: 3412844019
+    locked: 0
+  - name: NPC
+    uniqueID: 492527347
     locked: 0
   - name: Player
     uniqueID: 3834787517

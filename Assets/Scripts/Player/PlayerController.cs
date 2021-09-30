@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private int facingDirection = 1;
     private int lastWallJumpDirection;
     private int amountOfDashLeft;
+    public int amountOfBullets = 6;
 
     private bool isFacingRight = true;
     private bool isMoving;
@@ -44,6 +45,16 @@ public class PlayerController : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject bulletBehindPrefab;
+    public GameObject bulletDownPrefab;
+    public GameObject bulletUpPrefab;
+    public GameObject bulletUpRightPrefab;
+    public GameObject bulletDownRightPrefab;
+    public GameObject bulletUpLeftPrefab;
+    public GameObject bulletDownLeftPrefab;
+
+    [SerializeField] private DialogueUI dialogueUI;
+
     private Rigidbody2D RB;
     private Animator Anim;
 
@@ -88,12 +99,16 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
         wallJumpDirection.Normalize();
-        amountOfDashLeft = amountOfDash;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (dialogueUI.IsOpen)
+        {
+            return;
+        }
+        amountOfDashLeft = amountOfBullets;
         CheckInput();
         CheckMovementDirection();
         UpdateAnimations();
@@ -102,6 +117,7 @@ public class PlayerController : MonoBehaviour
         CheckJump();
         CheckIfCanDash();
         CheckDash();
+        CheckDialogue();
     }
 
     private void FixedUpdate()
@@ -170,19 +186,26 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Dash"))
         {
-            if (!isGrounded)
+
+            if (!isGrounded && amountOfBullets > 0)
             {
                 AttemptToDash();
+                amountOfBullets -= 1;
             }
-            else if (Time.time >= (lastDash + dashCooldown))
+            else if (Time.time >= (lastDash + dashCooldown) && amountOfBullets > 0)
             {
                 AttemptToDash();
+                amountOfBullets -= 1;
             }
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if(amountOfBullets > 0)
+            {
+                Shoot();
+                amountOfBullets -= 1;
+            }          
         }
     }
 
@@ -371,6 +394,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckDialogue()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && isGrounded && !isMoving)
+        {
+            Interactable?.Interact(this);
+        }
+    }
+
     #endregion
 
     #region Other Functions
@@ -449,7 +480,7 @@ public class PlayerController : MonoBehaviour
 
     private void AttemptToDash()
     {
-        if (canDash)
+        if (canDash && amountOfBullets > 0)
         {
             isDashing = true;
             dashTimeLeft = dashTime;
@@ -458,12 +489,91 @@ public class PlayerController : MonoBehaviour
             lastImageXpos = transform.position.x;
             lastImageYpos = transform.position.y;
             amountOfDashLeft--;
+            if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 0)
+            {
+                ShootBehind();
+            }
+            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == 1)
+            {
+                ShootDown();
+            }
+            else if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == -1)
+            {
+                ShootUp();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == 1)
+            {
+                ShootDownLeft();
+            }
+            else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == -1)
+            {
+                ShootUpLeft();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 1)
+            {
+                ShootDownRight();
+            }
+            else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == -1)
+            {
+                ShootUpRight();
+            }
         }
     }
+
+    public DialogueUI DialogueUI => dialogueUI;
+
+    public IInteractable Interactable { get; set; }
+
+    #endregion
+
+    #region Shoot Directions
 
     private void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootBehind()
+    {
+        Instantiate(bulletBehindPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootDown()
+    {
+        Instantiate(bulletDownPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootUp()
+    {
+        Instantiate(bulletUpPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootUpRight()
+    {
+        Instantiate(bulletUpRightPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootDownRight()
+    {
+        Instantiate(bulletDownRightPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootDownLeft()
+    {
+        Instantiate(bulletDownLeftPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void ShootUpLeft()
+    {
+        Instantiate(bulletUpLeftPrefab, firePoint.position, firePoint.rotation);
     }
 
     #endregion

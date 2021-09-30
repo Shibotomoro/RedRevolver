@@ -14,9 +14,17 @@ public class PlayerStats : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        //Check if player collides with flying enemy
 
         if (col.gameObject.tag.Equals("Enemy"))
+        {
+            Die();
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.gameObject.tag == "Projectile")
         {
             Die();
         }
@@ -31,6 +39,11 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = maxHealth;
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    private void Damage(AttackDetails attackDetails)
+    {
+        DecreaseHealth(attackDetails.damageAmount);
     }
 
     public void DecreaseHealth(float amount)
