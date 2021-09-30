@@ -7784,7 +7784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578256696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: -0, z: 0}
+  m_LocalPosition: {x: 1.01, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 896054856}
@@ -38818,7 +38818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051890493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.86, y: -3.98, z: 0}
+  m_LocalPosition: {x: 8.94, y: 14.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1360692506}
@@ -40297,76 +40297,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: dashTime
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: dashSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: dashSpeedY
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: dialogueUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletUpPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: 16f6a6faf24c6034089185f5ba12d5de, type: 3}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletDownPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: aaad4078ec844f945a87bdaf38ec5b01, type: 3}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletBehindPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: aaa8a27157b9d754b879df18169dc28e, type: 3}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletUpLeftPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: d20ee81d363b4b34483f59538997cf8b, type: 3}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletUpRightPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: 38a19ab0d795b2e42a1be603f2564093, type: 3}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletDownLeftPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: eb03018ce0cc0fc479d91d3a9a7b8230, type: 3}
-    - target: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: bulletDownRightPrefab
-      value: 
-      objectReference: {fileID: 7095577491254302719, guid: 704682fd39940af4f9348dc56ec1a816, type: 3}
     - target: {fileID: 757472521907516540, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516540, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472521907516543, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472522601754473, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 757472522601754473, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135628060218868796, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: maxHealth
-      value: 50
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 806011737249240441, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
 --- !u!1001 &1183413064869938808
 PrefabInstance:
