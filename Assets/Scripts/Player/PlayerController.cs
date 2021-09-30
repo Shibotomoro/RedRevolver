@@ -87,6 +87,9 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown = 2.5f;
 
     public Vector2 wallJumpDirection;
+    private Vector2 RawShootDirectionInput;
+    private Vector2Int ShootDirectionInput;
+    private Camera cam;
 
     #endregion
 
@@ -99,6 +102,7 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
         wallJumpDirection.Normalize();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -109,6 +113,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         amountOfDashLeft = amountOfBullets;
+        CheckShootDirection();
         CheckInput();
         CheckMovementDirection();
         UpdateAnimations();
@@ -203,7 +208,56 @@ public class PlayerController : MonoBehaviour
         {
             if(amountOfBullets > 0)
             {
-                Shoot();
+                if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 0)
+                {
+                    Shoot();
+                }
+                else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == 0)
+                {
+                    if (isFacingRight)
+                    {
+                        Shoot();
+                    }
+                    else
+                    {
+                        ShootBehind();
+                    }
+                }
+                else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == 0)
+                {
+                    if (isFacingRight)
+                    {
+                        ShootBehind();
+                    }
+                    else
+                    {
+                        Shoot();
+                    }
+                }
+                else if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 1)
+                {
+                    ShootUp();
+                }
+                else if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == -1)
+                {
+                    ShootDown();
+                }
+                else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == 1)
+                {
+                    ShootUpRight();
+                }
+                else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == -1)
+                {
+                    ShootDownRight();
+                }
+                else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == 1)
+                {
+                    ShootUpLeft();
+                }
+                else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == -1)
+                {
+                    ShootDownLeft();
+                }
                 amountOfBullets -= 1;
             }          
         }
@@ -403,6 +457,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckShootDirection()
+    {
+        RawShootDirectionInput = Input.mousePosition;
+        RawShootDirectionInput = cam.ScreenToWorldPoint((Vector3) RawShootDirectionInput) - transform.position;
+        ShootDirectionInput = Vector2Int.RoundToInt(RawShootDirectionInput.normalized);
+    }
+
     #endregion
 
     #region Other Functions
@@ -553,6 +614,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ShootUp()
+
     {
         Instantiate(bulletUpPrefab, firePoint.position, firePoint.rotation);
     }
