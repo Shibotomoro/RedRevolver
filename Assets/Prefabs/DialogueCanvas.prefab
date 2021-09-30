@@ -173,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
+  m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2921620506582077885
 CanvasRenderer:
@@ -211,7 +211,7 @@ MonoBehaviour:
 
     New Text
 
-    New Text'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab1ebd016e4e047488235a855e3a2962, type: 2}
   m_sharedMaterial: {fileID: 8064612289520733833, guid: ab1ebd016e4e047488235a855e3a2962, type: 2}
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 8
 --- !u!1 &2921620507629947312
 GameObject:
   m_ObjectHideFlags: 0
