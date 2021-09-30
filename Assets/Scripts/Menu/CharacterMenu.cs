@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CharacterMenu : MonoBehaviour
 {
-    public Text numFruitText, healthText, stageText, tbdText;
+    public Text numFruitText, healthText, stageText, numBulletsText;
 
     public Image fruitSprite;
 
@@ -13,6 +13,7 @@ public class CharacterMenu : MonoBehaviour
     {
         numFruitText.text = PlayerStats.fruitsCollected.ToString();
         healthText.text = PlayerStats.currentHealth.ToString();
+        numBulletsText.text = PlayerController.amountOfBullets.ToString();
         stageText.text = "Not Implemented";
     }
 }
