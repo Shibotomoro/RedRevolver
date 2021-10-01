@@ -446,7 +446,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of ab10702 (Merge pull request #42 from Shibotomoro/Ted's-Branch)
 --- !u!1 &712894620
 GameObject:
   m_ObjectHideFlags: 0
