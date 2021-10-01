@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         GM.Respawn();
         Destroy(gameObject);
