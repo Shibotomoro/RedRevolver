@@ -21,7 +21,7 @@ TagManager:
   - Player
   - Obstacle
   - NPC
-  - 
+  - NoCollideWithPlayer
   - 
   - 
   - 
@@ -52,14 +52,17 @@ TagManager:
   - name: Middle Background
     uniqueID: 198265071
     locked: 0
-  - name: Platforms
-    uniqueID: 3362661231
-    locked: 0
   - name: Obstacles
     uniqueID: 1109664013
     locked: 0
+  - name: Platforms
+    uniqueID: 3362661231
+    locked: 0
   - name: Enemy
     uniqueID: 3412844019
+    locked: 0
+  - name: Collectible
+    uniqueID: 3038503827
     locked: 0
   - name: NPC
     uniqueID: 492527347

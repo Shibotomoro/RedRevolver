@@ -590,6 +590,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void RefillAmmo()
+    {
+        amountOfBullets = 6;
+    }
+
     public DialogueUI DialogueUI => dialogueUI;
 
     public IInteractable Interactable { get; set; }
