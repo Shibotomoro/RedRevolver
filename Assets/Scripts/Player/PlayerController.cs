@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private bool isWallSliding;
     private bool isAttemptingToJump;
     private bool isDashing;
+    private bool isCrouching;
     private bool canNormalJump;
     private bool canWallJump;
     private bool canMove;
@@ -113,6 +114,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         amountOfDashLeft = amountOfBullets;
+        CheckCrouch();
         CheckShootDirection();
         CheckInput();
         CheckMovementDirection();
@@ -464,6 +466,18 @@ public class PlayerController : MonoBehaviour
         ShootDirectionInput = Vector2Int.RoundToInt(RawShootDirectionInput.normalized);
     }
 
+    private void CheckCrouch()
+    {
+        if (RawMovementInputDirectionX == 0 && RawMovementInputDirectionY == -1 && isGrounded)
+        {
+            isCrouching = true;
+        }
+        else
+        {
+            isCrouching = false;
+        }
+    }
+
     #endregion
 
     #region Other Functions
@@ -474,6 +488,7 @@ public class PlayerController : MonoBehaviour
         Anim.SetBool("isGrounded", isGrounded);
         Anim.SetFloat("yVelocity", RB.velocity.y);
         Anim.SetBool("isWallSliding", isWallSliding);
+        Anim.SetBool("isCrouching", isCrouching);
     }
 
     private void ApplyMovement()
