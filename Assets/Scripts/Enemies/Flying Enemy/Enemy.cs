@@ -26,9 +26,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public int health = 100;
+    public int health = 50;
 
     public GameObject deathEffect;
+    public GameObject AmmoRefillPrefab;
 
     public void TakeDamage(int damage)
     {
@@ -51,6 +52,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Instantiate(AmmoRefillPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private int facingDirection = 1;
     private int lastWallJumpDirection;
     private int amountOfDashLeft;
-    public static int amountOfBullets = 6;
+    public int amountOfBullets = 6;
 
     private bool isFacingRight = true;
     private bool isMoving;
@@ -588,6 +588,11 @@ public class PlayerController : MonoBehaviour
                 ShootUpRight();
             }
         }
+    }
+
+    public void RefillAmmo()
+    {
+        amountOfBullets = 6;
     }
 
     public DialogueUI DialogueUI => dialogueUI;
