@@ -74,3 +74,6 @@ TagManager:
   - name: Foreground
     uniqueID: 3076091069
     locked: 0
+  - name: Weather
+    uniqueID: 2218863625
+    locked: 0
