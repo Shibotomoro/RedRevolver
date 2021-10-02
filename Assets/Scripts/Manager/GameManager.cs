@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
     public GameObject[] spawnLocations;
     public GameObject[] activeRooms;
 
-    private static float playerPosX;
-    private static float playerPosY;
+    private static float playerPosX = 0;
+    private static float playerPosY = 0;
     private static bool reload;
 
-    private int roomTracker;
+    private int roomTracker = 0;
 
     public CinemachineVirtualCamera CVC;
 
