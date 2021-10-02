@@ -136,12 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370d1a29d3a4a964c9d9d914f75d4b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionAnim: {fileID: 0}
+  transitionTime: 1
   player: {fileID: 0}
-  playerPrefab: {fileID: 757472521907516540, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
   spawnLocations:
   - {fileID: 8412480582635782932}
   - {fileID: 8412480582699924204}
   activeRooms:
   - {fileID: 0}
   - {fileID: 0}
-  CVC: {fileID: 0}

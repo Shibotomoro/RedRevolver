@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public Animator transitionAnim;
+    public float transitionTime = 1f;
+
     public GameObject player;
-    public GameObject playerPrefab;
     public GameObject[] spawnLocations;
     public GameObject[] activeRooms;
 
@@ -18,8 +20,6 @@ public class GameManager : MonoBehaviour
     private static bool reload;
 
     private int roomTracker = 0;
-
-    public CinemachineVirtualCamera CVC;
 
     private void Awake()
     {
@@ -47,8 +47,25 @@ public class GameManager : MonoBehaviour
         reload = true;
         playerPosX = spawnLocations[roomTracker].transform.position.x;
         playerPosY = spawnLocations[roomTracker].transform.position.y;
-        GameObject Player = Instantiate(playerPrefab, spawnLocations[roomTracker].transform.position, Quaternion.identity);
-        CVC.Follow = Player.transform;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ReloadScene();
+    }
+
+    public void ReloadScene()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    public void LoadNextLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transitionAnim.SetTrigger("FadeStart");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelIndex);
     }
 }
