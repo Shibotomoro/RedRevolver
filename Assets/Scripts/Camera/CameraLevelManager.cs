@@ -11,6 +11,7 @@ public class CameraLevelManager : MonoBehaviour
         if (other.CompareTag("Player") && !other.isTrigger)
         {
             virtualCam.SetActive(true);
+
         }
     }
 

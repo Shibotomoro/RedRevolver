@@ -7,52 +7,34 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public Transform respawnPoint;
     public GameObject playerPrefab;
+    public GameObject[] spawnLocations;
+    public GameObject[] activeRooms;
+
+    private int roomTracker;
 
     public CinemachineVirtualCamera CVC;
 
     private void Awake()
     {
         instance = this;
+        spawnLocations = GameObject.FindGameObjectsWithTag("Respawn");
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < activeRooms.Length; i++)
+        {
+            if (activeRooms[i].activeSelf == true)
+            {
+                roomTracker = i;
+            }
+        }
     }
 
     public void Respawn()
     {
-        GameObject Player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        GameObject Player = Instantiate(playerPrefab, spawnLocations[roomTracker].transform.position, Quaternion.identity);
         CVC.Follow = Player.transform;
     }
-
-    //private float respawnTimeStart;
-
-    //private bool respawn;
-
-    //private CinemachineVirtualCamera CVC;
-
-    //private void Start()
-    //{
-    //    Invoke("InitCamera", 1f);
-    //}
-
-    //private void InitCamera()
-    //{
-    //    CVC = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
-    //}
-
-    //public void Respawn()
-    //{
-    //    respawnTimeStart = Time.time;
-    //    respawn = true;
-    //}
-
-    //private void CheckRespawn()
-    //{
-    //    if (Time.time >= respawnTimeStart + respawnTime && respawn)
-    //    {
-    //        var playerTemp = Instantiate(player, respawnPoint);
-    //        CVC.m_Follow = playerTemp.transform;
-    //        respawn = false;
-    //    }
-    //}
-
 }
