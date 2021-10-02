@@ -10,7 +10,6 @@ TagManager:
   - Ammo
   - NPC
   - NonShootable
-  - SpawnPoints
   layers:
   - Default
   - TransparentFX
