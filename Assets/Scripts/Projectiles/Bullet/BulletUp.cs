@@ -18,7 +18,7 @@ public class BulletUp : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.gameObject.tag != "Level" && hitInfo.gameObject.tag != "Player")
+        if (hitInfo.gameObject.tag != "Level" && hitInfo.gameObject.tag != "Player" && hitInfo.gameObject.tag != "NonShootable")
         {
             EnemyDeath enemyDeath = hitInfo.GetComponent<EnemyDeath>();
             if (enemyDeath != null)
