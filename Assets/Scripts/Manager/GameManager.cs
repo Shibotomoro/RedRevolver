@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public GameObject player;
     public GameObject playerPrefab;
     public GameObject[] spawnLocations;
     public GameObject[] activeRooms;
+
+    private static float playerPosX;
+    private static float playerPosY;
+    private static bool reload;
 
     private int roomTracker;
 
@@ -17,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (reload)
+        {
+            player.transform.position = new Vector3(playerPosX, playerPosY, 0);
+        }
         instance = this;
         spawnLocations = GameObject.FindGameObjectsWithTag("Respawn");
     }
@@ -34,7 +44,11 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+        reload = true;
+        playerPosX = spawnLocations[roomTracker].transform.position.x;
+        playerPosY = spawnLocations[roomTracker].transform.position.y;
         GameObject Player = Instantiate(playerPrefab, spawnLocations[roomTracker].transform.position, Quaternion.identity);
         CVC.Follow = Player.transform;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
