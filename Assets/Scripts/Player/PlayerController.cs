@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundCheck;
     public Transform wallCheck;
+    public ParticleSystem dust;
 
     public LayerMask whatIsGround;
 
@@ -515,6 +516,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isWallSliding && canFlip)
         {
+            CreateDust();
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
@@ -525,6 +527,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canNormalJump)
         {
+            CreateDust();
             RB.velocity = new Vector2(RB.velocity.x, jumpForce);
             amountOfJumpsLeft--;
             jumpTimer = 0;
@@ -608,6 +611,11 @@ public class PlayerController : MonoBehaviour
     public void RefillAmmo()
     {
         amountOfBullets = 6;
+    }
+
+    private void CreateDust()
+    {
+        dust.Play();
     }
 
     public DialogueUI DialogueUI => dialogueUI;
