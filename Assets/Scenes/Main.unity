@@ -38557,27 +38557,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1967382179 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1967382179, guid: eb3ec64af20e76f44a2ae89b9289bf1c, type: 3}
-  m_PrefabInstance: {fileID: 2848576604766832547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1995500425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 757472521907516540, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
   m_PrefabInstance: {fileID: 757472520964939857}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1995500429 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 757472521907516514, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-  m_PrefabInstance: {fileID: 757472520964939857}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995500425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58225b167518a7b4d9ad2557c70290b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2032446790
 GameObject:
   m_ObjectHideFlags: 3
@@ -38683,6 +38667,11 @@ MonoBehaviour:
   m_AmplitudeGain: 0
   m_FrequencyGain: 5
   mNoiseOffsets: {x: -221.76733, y: -609.6776, z: -518.4962}
+--- !u!95 &2057528298 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2848576603519116361, guid: eb3ec64af20e76f44a2ae89b9289bf1c, type: 3}
+  m_PrefabInstance: {fileID: 2848576604766832547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2090124409
 GameObject:
   m_ObjectHideFlags: 0
@@ -39080,10 +39069,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2135628060218868796, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 1995500429}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
 --- !u!1001 &1183413064869938808
@@ -39722,7 +39707,7 @@ PrefabInstance:
     - target: {fileID: 8412480582969390999, guid: fad351902ea220546a6f7dd209c599bd, type: 3}
       propertyPath: transitionAnim
       value: 
-      objectReference: {fileID: 1967382179}
+      objectReference: {fileID: 2057528298}
     - target: {fileID: 8412480582969390999, guid: fad351902ea220546a6f7dd209c599bd, type: 3}
       propertyPath: activeRooms.Array.data[0]
       value: 
