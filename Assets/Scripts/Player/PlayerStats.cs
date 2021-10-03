@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public static int fruitsCollected = 0;
 
     private GameManager GM;
+    public GameObject deathEffect;
 
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -57,7 +58,9 @@ public class PlayerStats : MonoBehaviour
 
     public void Die()
     {
-        GM.Respawn();
         Destroy(gameObject);
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        GM.Respawn();
     }
+
 }
