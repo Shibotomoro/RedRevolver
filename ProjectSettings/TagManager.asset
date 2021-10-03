@@ -68,6 +68,9 @@ TagManager:
   - name: NPC
     uniqueID: 492527347
     locked: 0
+  - name: NextLevelWaypoint
+    uniqueID: 2224184125
+    locked: 0
   - name: Player
     uniqueID: 3834787517
     locked: 0
