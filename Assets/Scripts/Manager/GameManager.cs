@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject[] spawnLocations;
     public GameObject[] activeRooms;
+    public GameObject nextLevelWaypoint;
 
     private static float playerPosX = 0;
     private static float playerPosY = 0;

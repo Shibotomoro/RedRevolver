@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 77c2dab837034c94e8fc2cf155348b7c
   - enabled: 1
+    path: Assets/Scenes/Jason WorkSpace.unity
+    guid: 65c97bf30b475a84b88b760f6cb69d6f
+  - enabled: 1
     path: Assets/Scenes/Level_One.unity
     guid: c0ea04fccbceb7048b0e21feb72b2960
   - enabled: 1
