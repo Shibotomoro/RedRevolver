@@ -13,7 +13,7 @@ public class CharacterMenu : MonoBehaviour
     {
         numFruitText.text = PlayerStats.fruitsCollected.ToString();
         healthText.text = PlayerStats.currentHealth.ToString();
-        //numBulletsText.text = PlayerController.bul
+        //numBulletsText.text = PlayerController.amountOfBullets.ToString();
         stageText.text = "Not Implemented";
     }
 }

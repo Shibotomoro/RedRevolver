@@ -8,9 +8,12 @@ public class PlayerStats : MonoBehaviour
 
     public static float currentHealth;
     public static int fruitsCollected = 0;
+    //public static int numBullets = 0;
 
     private GameManager GM;
     public GameObject deathEffect;
+    public PlayerController p;
+
 
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -33,12 +36,13 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
+        //numBullets = p.GetComponent<PlayerController>().amountOfBullets;
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
