@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float jumpTimer;
     private float turnTimer;
     private float wallJumpTimer;
-    private float dashTimeLeft;
+    public float dashTimeLeft;
     private float lastImageXpos;
     private float lastImageYpos;
     private float lastDash = -100f;
@@ -30,10 +30,10 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool isMoving;
     public bool isGrounded;
-    private bool isTouchingWall;
+    public bool isTouchingWall;
     private bool isWallSliding;
     private bool isAttemptingToJump;
-    private bool isDashing;
+    public bool isDashing;
     private bool isCrouching;
     private bool canNormalJump;
     private bool canWallJump;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private DialogueUI dialogueUI;
 
-    private Rigidbody2D RB;
+    public Rigidbody2D RB;
     private Animator Anim;
 
     public Transform groundCheck;

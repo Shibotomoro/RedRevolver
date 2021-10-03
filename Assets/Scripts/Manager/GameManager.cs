@@ -36,8 +36,6 @@ public class GameManager : MonoBehaviour
                 roomTracker = i;
             }
         }
-        Debug.Log(spawnLocations[0].transform.position.x);
-        Debug.Log(spawnLocations[0].transform.position.y);
     }
 
     public void Respawn()

@@ -59,6 +59,9 @@ TagManager:
   - name: Platforms
     uniqueID: 3362661231
     locked: 0
+  - name: Destroyable Platform
+    uniqueID: 2745640415
+    locked: 0
   - name: Enemy
     uniqueID: 3412844019
     locked: 0
