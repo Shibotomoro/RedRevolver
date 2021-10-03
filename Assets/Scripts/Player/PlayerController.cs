@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isFacingRight = true;
     private bool isMoving;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool isTouchingWall;
     private bool isWallSliding;
     private bool isAttemptingToJump;
