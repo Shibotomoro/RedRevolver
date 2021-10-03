@@ -39143,6 +39143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever
       objectReference: {fileID: 0}
+    - target: {fileID: 1194231028918510487, guid: 4de40bcba16c7de42bbec88302ba60b5, type: 3}
+      propertyPath: m_TagString
+      value: NonShootable
+      objectReference: {fileID: 0}
     - target: {fileID: 1194231028918510491, guid: 4de40bcba16c7de42bbec88302ba60b5, type: 3}
       propertyPath: m_RootOrder
       value: 1
