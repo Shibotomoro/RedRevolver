@@ -6,19 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
     public Animator transitionAnim;
     public float transitionTime = 1f;
 
     public GameObject player;
     public GameObject[] spawnLocations;
     public GameObject[] activeRooms;
-    public GameObject nextLevelWaypoint;
 
-    private static float playerPosX = 0;
-    private static float playerPosY = 0;
-    private static bool reload;
+    public static float playerPosX = 0;
+    public static float playerPosY = 0;
+    public static bool reload;
 
     private int roomTracker = 0;
 
@@ -28,8 +25,6 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = new Vector3(playerPosX, playerPosY, 0);
         }
-        instance = this;
-        spawnLocations = GameObject.FindGameObjectsWithTag("Respawn");
     }
 
     private void Update()
@@ -41,6 +36,8 @@ public class GameManager : MonoBehaviour
                 roomTracker = i;
             }
         }
+        Debug.Log(spawnLocations[0].transform.position.x);
+        Debug.Log(spawnLocations[0].transform.position.y);
     }
 
     public void Respawn()

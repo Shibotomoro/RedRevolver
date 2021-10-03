@@ -7,7 +7,7 @@ public class NextLevel : MonoBehaviour
 
     private GameManager GM;
 
-    private void Start()
+    private void Awake()
     {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
