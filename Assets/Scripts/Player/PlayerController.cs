@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundCheck;
     public Transform wallCheck;
-    public ParticleSystem dust;
+    public ParticleSystem jumpDust;
 
     public LayerMask whatIsGround;
 
@@ -516,7 +516,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!isWallSliding && canFlip)
         {
-            CreateDust();
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
@@ -615,7 +614,7 @@ public class PlayerController : MonoBehaviour
 
     private void CreateDust()
     {
-        dust.Play();
+        jumpDust.Play();
     }
 
     public DialogueUI DialogueUI => dialogueUI;
