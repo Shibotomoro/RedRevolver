@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
 
     private bool isFacingRight = true;
     private bool isMoving;
-    public bool isGrounded;
-    public bool isTouchingWall;
+    [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isTouchingWall;
     private bool isWallSliding;
     private bool isAttemptingToJump;
-    public bool isDashing;
+    [HideInInspector] public bool isDashing;
     private bool isCrouching;
     private bool canNormalJump;
     private bool canWallJump;
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private bool checkJumpMultiplier;
     private bool hasWallJumped;
     private bool waitForDash;
+    private bool playDashParticle;
 
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -56,12 +57,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private DialogueUI dialogueUI;
 
-    public Rigidbody2D RB;
+    [HideInInspector] public Rigidbody2D RB;
     private Animator Anim;
 
     public Transform groundCheck;
     public Transform wallCheck;
     public ParticleSystem jumpDust;
+    public ParticleSystem dashDust;
+    public ParticleSystem slideDust;
+    public ParticleSystem wallJumpDust;
 
     public LayerMask whatIsGround;
 
@@ -126,6 +130,7 @@ public class PlayerController : MonoBehaviour
         CheckIfCanDash();
         CheckDash();
         CheckDialogue();
+        CheckDashParticle();
     }
 
     private void FixedUpdate()
@@ -194,6 +199,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Dash"))
         {
+            playDashParticle = true;
 
             if (!isGrounded && amountOfBullets > 0)
             {
@@ -328,13 +334,17 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIfWallSliding()
     {
+        var main = slideDust.main;
         if (isTouchingWall && RawMovementInputDirectionX == facingDirection && RB.velocity.y < 0)
         {
             isWallSliding = true;
+            slideDust.Play();
+            main.startColor = Color.white;
         }
         else
         {
             isWallSliding = false;
+            main.startColor = Color.clear;
         }
     }
 
@@ -479,6 +489,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckDashParticle()
+    {
+        if (playDashParticle)
+        {
+            StartCoroutine(DashParticle());
+            playDashParticle = false;
+        }
+    }
+
+    IEnumerator DashParticle()
+    {
+        dashDust.Play();
+        yield return new WaitForSeconds(.3f);
+        dashDust.Stop();
+    }
+
     #endregion
 
     #region Other Functions
@@ -526,7 +552,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canNormalJump)
         {
-            CreateDust();
+            jumpDust.Play();
             RB.velocity = new Vector2(RB.velocity.x, jumpForce);
             amountOfJumpsLeft--;
             jumpTimer = 0;
@@ -539,6 +565,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canWallJump)
         {
+            wallJumpDust.Play();
             RB.velocity = new Vector2(RB.velocity.x, 0.0f);
             isWallSliding = false;
             amountOfJumpsLeft = amountOfJumps;
@@ -610,11 +637,6 @@ public class PlayerController : MonoBehaviour
     public void RefillAmmo()
     {
         amountOfBullets = 6;
-    }
-
-    private void CreateDust()
-    {
-        jumpDust.Play();
     }
 
     public DialogueUI DialogueUI => dialogueUI;
