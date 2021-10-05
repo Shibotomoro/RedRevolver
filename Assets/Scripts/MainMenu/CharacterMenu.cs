@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class CharacterMenu : MonoBehaviour
 {
     public Text numFruitText, healthText, stageText, numBulletsText;
-    public Image[] bulletSprites;
+
+    [SerializeField] GameObject pauseMenu;
+    public static bool isPaused = false;
 
     public Image fruitSprite;
 
@@ -17,18 +19,25 @@ public class CharacterMenu : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         pc = player.GetComponent<PlayerController>();
-        bulletSprites[0].enabled = false;
-        bulletSprites[1].enabled = false;
-        bulletSprites[2].enabled = false;
-        bulletSprites[3].enabled = false;
-        bulletSprites[4].enabled = false;
-        
+        pauseMenu.SetActive(false);
 
     }
 
     public void Update()
     {
-        UpdateBulletUI();
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
     public void UpdateMenu()
     {
@@ -38,19 +47,20 @@ public class CharacterMenu : MonoBehaviour
         stageText.text = "Not Implemented";
     }
 
-    public void UpdateBulletUI()
-    {
-        
-        for(int i=0; i < pc.amountOfBullets-1; i++)
-        {
-            bulletSprites[i].enabled = false;
-        }
-
-        for (int i = pc.amountOfBullets; i < 6; i++)
-        {
-            bulletSprites[i].enabled = false;
-        }
-        bulletSprites[pc.amountOfBullets-1].enabled = true;
-    }
     
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+        
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        
+    }
 }
