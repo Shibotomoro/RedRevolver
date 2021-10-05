@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Trampoline : MonoBehaviour
 {
-    public float bounce = 20f;
+    public float bounce = 25f;
+    private GameObject player;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
+            player.GetComponent<PlayerController>().dashTimeLeft = 0.0f;
+            player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
         }
     }
+
 }
