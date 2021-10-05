@@ -215,61 +215,62 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if(amountOfBullets > 0)
-            {
-                if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 0)
+                if (amountOfBullets > 0)
                 {
-                    Shoot();
-                }
-                else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == 0)
-                {
-                    if (isFacingRight)
+                    if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 0)
                     {
                         Shoot();
                     }
-                    else
+                    else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == 0)
                     {
-                        ShootBehind();
+                        if (isFacingRight)
+                        {
+                            Shoot();
+                        }
+                        else
+                        {
+                            ShootBehind();
+                        }
                     }
-                }
-                else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == 0)
-                {
-                    if (isFacingRight)
+                    else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == 0)
                     {
-                        ShootBehind();
+                        if (isFacingRight)
+                        {
+                            ShootBehind();
+                        }
+                        else
+                        {
+                            Shoot();
+                        }
                     }
-                    else
+                    else if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 1)
                     {
-                        Shoot();
+                        ShootUp();
                     }
+                    else if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == -1)
+                    {
+                        ShootDown();
+                    }
+                    else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == 1)
+                    {
+                        ShootUpRight();
+                    }
+                    else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == -1)
+                    {
+                        ShootDownRight();
+                    }
+                    else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == 1)
+                    {
+                        ShootUpLeft();
+                    }
+                    else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == -1)
+                    {
+                        ShootDownLeft();
+                    }
+                    amountOfBullets -= 1;
                 }
-                else if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 1)
-                {
-                    ShootUp();
-                }
-                else if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == -1)
-                {
-                    ShootDown();
-                }
-                else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == 1)
-                {
-                    ShootUpRight();
-                }
-                else if (ShootDirectionInput.x == 1 && ShootDirectionInput.y == -1)
-                {
-                    ShootDownRight();
-                }
-                else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == 1)
-                {
-                    ShootUpLeft();
-                }
-                else if (ShootDirectionInput.x == -1 && ShootDirectionInput.y == -1)
-                {
-                    ShootDownLeft();
-                }
-                amountOfBullets -= 1;
-            }          
-        }
+            }
+        
     }
 
     private void CheckMovementDirection()
