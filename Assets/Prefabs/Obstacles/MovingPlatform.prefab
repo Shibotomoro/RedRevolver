@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034970330001901293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1034970331093838325}
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPathStart: {fileID: 1034970331218078924}
   platformPathEnd: {fileID: 1034970330001901293}
+  shootTrigger: {fileID: 0}
   speed: 5
 --- !u!61 &1034970331093838330
 BoxCollider2D:
