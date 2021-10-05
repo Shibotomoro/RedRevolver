@@ -215,6 +215,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            if (!CharacterMenu.isPaused) { 
                 if (amountOfBullets > 0)
                 {
                     if (ShootDirectionInput.x == 0 && ShootDirectionInput.y == 0)
@@ -270,7 +271,7 @@ public class PlayerController : MonoBehaviour
                     amountOfBullets -= 1;
                 }
             }
-        
+        }
     }
 
     private void CheckMovementDirection()
