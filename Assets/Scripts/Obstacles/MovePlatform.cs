@@ -6,6 +6,7 @@ public class MovePlatform : MonoBehaviour
 {
     public GameObject platformPathStart;
     public GameObject platformPathEnd;
+    public GameObject shootTrigger;
     public int speed = 5;
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -14,19 +15,23 @@ public class MovePlatform : MonoBehaviour
     {
         startPosition = platformPathStart.transform.position;
         endPosition = platformPathEnd.transform.position;
-        StartCoroutine(Vector3LerpCoroutine(gameObject, endPosition, speed));
     }
 
     private void Update()
     {
-        if (transform.position == endPosition)
+        if (shootTrigger.GetComponent<ShootTrigger>().trigger)
         {
-            StartCoroutine(Vector3LerpCoroutine(gameObject, startPosition, speed));
+            if (transform.position == startPosition)
+            {
+                StartCoroutine(Vector3LerpCoroutine(gameObject, endPosition, speed));
+            }
         }
-
-        if (transform.position == startPosition)
+        else if (!shootTrigger.GetComponent<ShootTrigger>().trigger)
         {
-            StartCoroutine(Vector3LerpCoroutine(gameObject, endPosition, speed));
+            if (transform.position == endPosition)
+            {
+                StartCoroutine(Vector3LerpCoroutine(gameObject, startPosition, speed));
+            }
         }
     }
     

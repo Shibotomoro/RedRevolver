@@ -34,7 +34,8 @@ public class BulletUpLeft : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
-            Destroy(gameObject);
+            GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject, 0.5f);
         }
     }
 }

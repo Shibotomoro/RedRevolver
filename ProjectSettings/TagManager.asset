@@ -11,6 +11,7 @@ TagManager:
   - NPC
   - NonShootable
   - PlayerBullet
+  - ShootTrigger
   layers:
   - Default
   - TransparentFX
