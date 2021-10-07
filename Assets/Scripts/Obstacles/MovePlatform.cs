@@ -7,9 +7,16 @@ public class MovePlatform : MonoBehaviour
     public GameObject platformPathStart;
     public GameObject platformPathEnd;
     public GameObject shootTrigger;
-    public int speed = 5;
+
+    private PlayerController playerControllerScript;
+    private Rigidbody2D playerRB;
+
+    public float speed = 10f;
+    public float velocityDampener = 0.75f;
     private Vector3 startPosition;
     private Vector3 endPosition;
+    public Vector3 platformVelocityTracker;
+    private bool playerIsOnPlatform;
 
     private void Start()
     {
@@ -39,9 +46,20 @@ public class MovePlatform : MonoBehaviour
     {
         Vector3 startPosition = obj.transform.position;
         float time = 0f;
+        float startTime = 0.0f;
 
         while (obj.transform.position != target)
         {
+            if (playerIsOnPlatform && playerControllerScript.isJumping)
+            {
+                platformVelocityTracker = (obj.transform.position - startPosition) / (time - startTime);
+                platformVelocityTracker *= velocityDampener;
+                if (platformVelocityTracker.y >= 0)
+                {
+                    playerRB.velocity = new Vector2(playerRB.velocity.x + platformVelocityTracker.x, playerRB.velocity.y + platformVelocityTracker.y);
+                }
+            }
+
             obj.transform.position = Vector3.Lerp(startPosition, target,
                 (time / Vector3.Distance(startPosition, target)) * speed);
             time += Time.deltaTime;
@@ -54,6 +72,9 @@ public class MovePlatform : MonoBehaviour
         if (coll.gameObject.CompareTag("Player"))
         {
             coll.gameObject.transform.SetParent(gameObject.transform, true);
+            playerRB = coll.gameObject.GetComponent<Rigidbody2D>();
+            playerControllerScript = coll.gameObject.GetComponent<PlayerController>();
+            playerIsOnPlatform = true;
         }
     }
 
@@ -62,6 +83,7 @@ public class MovePlatform : MonoBehaviour
         if (coll.gameObject.CompareTag("Player"))
         {
             coll.gameObject.transform.parent = null;
+            playerIsOnPlatform = false;
         }
     }
 }

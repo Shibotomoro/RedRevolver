@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool isTouchingWall;
+    public bool isJumping;
     private bool isWallSliding;
     private bool isAttemptingToJump;
     [HideInInspector] public bool isDashing;
@@ -153,8 +154,10 @@ public class PlayerController : MonoBehaviour
             MovementInputDirectionY = Input.GetAxis("Vertical");
         }
 
+        isJumping = false;
         if (Input.GetButtonDown("Jump"))
         {
+            isJumping = true;
             if (isGrounded || (amountOfJumpsLeft > 0 && isTouchingWall))
             {
                 NormalJump();
