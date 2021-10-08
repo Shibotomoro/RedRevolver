@@ -9,8 +9,6 @@ public class Trampoline : MonoBehaviour
     private Animator anim;
     private bool isPushing;
 
-    [SerializeField] private float pushingTimer = .1f;
-
 
     private void Start()
     {
