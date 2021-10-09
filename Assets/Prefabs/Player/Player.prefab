@@ -19546,6 +19546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashTimeLeft: 0
+  halfGravThreshold: 2
   amountOfBullets: 6
   isGrounded: 0
   isTouchingWall: 0
