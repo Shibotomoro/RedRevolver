@@ -26,7 +26,7 @@ public class CharacterMenu : MonoBehaviour
 
     public void Update()
     {
-
+        UpdateMenu();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
