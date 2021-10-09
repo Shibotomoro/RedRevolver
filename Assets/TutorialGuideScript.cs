@@ -20,13 +20,21 @@ public class TutorialGuideScript : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             showJump = true;
         }
         else
+        {
+            showJump = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && other.TryGetComponent(out PlayerController player))
         {
             showJump = false;
         }
