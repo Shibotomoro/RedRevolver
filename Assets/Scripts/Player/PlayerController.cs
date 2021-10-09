@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private float lastImageYpos;
     private float lastDash = -100f;
     private float coyoteCounter;
+    private float halfGravMultiplier;
+    public float halfGravThreshold;
 
     private int amountOfJumpsLeft;
     private int facingDirection = 1;
@@ -157,6 +159,9 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
+        halfGravMultiplier = (Mathf.Abs(RB.velocity.y) < halfGravThreshold && Input.GetButton("Jump")) ? .5f : 1f;
+        RB.gravityScale = halfGravMultiplier * 5;
+
         if (!waitForDash)
         {
             RawMovementInputDirectionX = Input.GetAxisRaw("Horizontal");
@@ -207,8 +212,8 @@ public class PlayerController : MonoBehaviour
 
         if (checkJumpMultiplier && !Input.GetButton("Jump"))
         {
-            checkJumpMultiplier = false;
             RB.velocity = new Vector2(RB.velocity.x, RB.velocity.y * variableJumpHeightMultiplier);
+            checkJumpMultiplier = false;
         }
 
         if (Input.GetButtonDown("Dash"))
