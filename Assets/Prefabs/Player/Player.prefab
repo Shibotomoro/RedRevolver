@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4804,6 +4804,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &668909874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668909875}
+  m_Layer: 8
+  m_Name: CornerCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &668909875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668909874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.76, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 757472521907516512}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1321729589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9620,7 +9650,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14482,7 +14512,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19286,7 +19316,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19433,6 +19463,7 @@ Transform:
   - {fileID: 1907538953}
   - {fileID: 144142477}
   - {fileID: 2087460968}
+  - {fileID: 668909875}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19455,7 +19486,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19501,7 +19532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   deathEffect: {fileID: 2157804832923225388, guid: 7159efb5478dbe945a6ce5d1912312ad, type: 3}
-  p: {fileID: 0}
+  p: {fileID: 757472521907516514}
 --- !u!114 &757472521907516514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19519,6 +19550,7 @@ MonoBehaviour:
   isGrounded: 0
   isTouchingWall: 0
   isDashing: 0
+  isJumping: 0
   firePoint: {fileID: 757472522601754473}
   bulletPrefab: {fileID: 7095577491254302719, guid: aa6d97a1c9c56da46b193ef58bce336e, type: 3}
   bulletBehindPrefab: {fileID: 7095577491254302719, guid: aaa8a27157b9d754b879df18169dc28e, type: 3}
@@ -19532,6 +19564,7 @@ MonoBehaviour:
   RB: {fileID: 0}
   groundCheck: {fileID: 757472521600440362}
   wallCheck: {fileID: 757472522576536877}
+  cornerCheck: {fileID: 668909875}
   jumpDust: {fileID: 1907538955}
   dashDust: {fileID: 144142479}
   slideDust: {fileID: 2006268854}
@@ -19559,6 +19592,8 @@ MonoBehaviour:
   dashSpeedY: 12
   distanceBetweenImages: 0.2
   dashCooldown: 1.5
+  cornerFixXOffset1: 0
+  cornerFixYOffset1: 2
   wallJumpDirection: {x: 1, y: 2}
 --- !u!50 &757472521907516542
 Rigidbody2D:
@@ -19650,7 +19685,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757472522576536874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.267, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 757472521907516512}

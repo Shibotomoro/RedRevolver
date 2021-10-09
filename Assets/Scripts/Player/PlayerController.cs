@@ -27,15 +27,16 @@ public class PlayerController : MonoBehaviour
     private int amountOfDashLeft;
     public  int amountOfBullets = 6;
 
-    private bool isFacingRight = true;
-    private bool isMoving;
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool isTouchingWall;
-    public bool isJumping;
+    [HideInInspector] public bool isDashing;
+    [HideInInspector] public bool isJumping;
+    private bool isFacingRight = true;
+    private bool isMoving;
     private bool isWallSliding;
     private bool isAttemptingToJump;
-    [HideInInspector] public bool isDashing;
     private bool isCrouching;
+    private bool isTouchingCorner;
     private bool canNormalJump;
     private bool canWallJump;
     private bool canMove;
@@ -45,6 +46,8 @@ public class PlayerController : MonoBehaviour
     private bool hasWallJumped;
     private bool waitForDash;
     private bool playDashParticle;
+    private bool cornerDetected;
+    private bool fixCornerDash;
 
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -63,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundCheck;
     public Transform wallCheck;
+    public Transform cornerCheck;
+
     public ParticleSystem jumpDust;
     public ParticleSystem dashDust;
     public ParticleSystem slideDust;
@@ -92,10 +97,15 @@ public class PlayerController : MonoBehaviour
     public float dashSpeedY = 20.0f;
     public float distanceBetweenImages = 0.1f;
     public float dashCooldown = 2.5f;
+    public float cornerFixXOffset1 = 0f;
+    public float cornerFixYOffset1 = 0f;
 
     public Vector2 wallJumpDirection;
     private Vector2 RawShootDirectionInput;
     private Vector2Int ShootDirectionInput;
+    private Vector2 cornerPosBot;
+    private Vector2 cornerPos1;
+
     private Camera cam;
 
     #endregion
@@ -128,16 +138,17 @@ public class PlayerController : MonoBehaviour
         CheckIfCanJump();
         CheckIfWallSliding();
         CheckJump();
+        CheckCornerFix();
         CheckIfCanDash();
         CheckDash();
         CheckDialogue();
         CheckDashParticle();
+        CheckSurroundings();
     }
 
     private void FixedUpdate()
     {
         ApplyMovement();
-        CheckSurroundings();
     }
 
     #endregion
@@ -303,6 +314,18 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+        isTouchingCorner = Physics2D.Raycast(cornerCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+        if (!isTouchingWall && isTouchingCorner && !cornerDetected)
+        {
+            cornerDetected = true;
+            cornerPosBot = cornerCheck.position;
+        }
+        else
+        {
+            cornerDetected = false;
+        }
     }
 
     private void CheckIfCanJump()
@@ -340,7 +363,7 @@ public class PlayerController : MonoBehaviour
     private void CheckIfWallSliding()
     {
         var main = slideDust.main;
-        if (isTouchingWall && RawMovementInputDirectionX == facingDirection && RB.velocity.y < 0)
+        if (isTouchingWall && RawMovementInputDirectionX == facingDirection && RB.velocity.y < 0 && !fixCornerDash)
         {
             isWallSliding = true;
             slideDust.Play();
@@ -508,6 +531,31 @@ public class PlayerController : MonoBehaviour
         dashDust.Play();
         yield return new WaitForSeconds(.3f);
         dashDust.Stop();
+    }
+
+    private void CheckCornerFix()
+    {
+        if (cornerDetected && isDashing)
+        {
+            fixCornerDash = true;
+            if (isFacingRight)
+            {
+                cornerPos1 = new Vector2(Mathf.Floor(cornerPosBot.x + wallCheckDistance) + cornerFixXOffset1,
+                    Mathf.Floor(cornerPosBot.y) + cornerFixYOffset1);
+            }
+            else
+            {
+                cornerPos1 = new Vector2(Mathf.Ceil(cornerPosBot.x - wallCheckDistance) - cornerFixXOffset1,
+                    Mathf.Floor(cornerPosBot.y) + cornerFixYOffset1);
+            }
+
+        }
+
+        if (fixCornerDash)
+        {
+            transform.position = cornerPos1;
+            fixCornerDash = false;
+        }
     }
 
     #endregion
@@ -700,5 +748,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         Gizmos.DrawLine(wallCheck.position,
             new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x + wallCheckDistance, cornerCheck.position.y, cornerCheck.position.z));
     }
 }
