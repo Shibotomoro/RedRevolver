@@ -17,6 +17,7 @@ public class TutorialGuideScript : MonoBehaviour
     void Update()
     {
         anim.SetBool("showJump", showJump);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
