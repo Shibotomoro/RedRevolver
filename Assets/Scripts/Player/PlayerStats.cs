@@ -11,14 +11,16 @@ public class PlayerStats : MonoBehaviour
     //public static int numBullets = 0;
 
     private GameManager GM;
+    private GameObject spikeObject;
     public GameObject deathEffect;
     public PlayerController p;
+
+    private bool isCollidingWithSpike;
 
 
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-
         if (col.gameObject.tag.Equals("Enemy"))
         {
             Die();
@@ -32,11 +34,26 @@ public class PlayerStats : MonoBehaviour
         {
             Die();
         }
+        if (hitInfo.gameObject.tag == "Spike")
+        {
+            spikeObject = hitInfo.gameObject;
+            isCollidingWithSpike = true;
+            // Facing Left
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D hitInfo)
+    {
+        if (hitInfo.gameObject.tag == "Spike")
+        {
+            isCollidingWithSpike = false;
+        }
+    }
+
 
     private void Update()
     {
-        
+        CheckSpikeCollision();
     }
 
     private void Start()
@@ -65,6 +82,48 @@ public class PlayerStats : MonoBehaviour
         Destroy(gameObject);
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         GM.Respawn();
+    }
+
+    private void CheckSpikeCollision()
+    {
+        if (isCollidingWithSpike)
+        {
+            if (spikeObject.transform.rotation.eulerAngles.z == 90)
+            {
+                if (p.RB.velocity.x <= 0.0) { }
+                else
+                {
+                    Die();
+                }
+            }
+            // Facing Down
+            else if (spikeObject.transform.rotation.eulerAngles.z == 180)
+            {
+                if (p.RB.velocity.y <= 0.0) { }
+                else
+                {
+                    Die();
+                }
+            }
+            // Facing Right
+            else if (spikeObject.transform.rotation.eulerAngles.z == 270)
+            {
+                if (p.RB.velocity.x >= 0.0) { }
+                else
+                {
+                    Die();
+                }
+            }
+            // Facing Up
+            else
+            {
+                if (p.RB.velocity.y >= 0.0) { }
+                else
+                {
+                    Die();
+                }
+            }
+        }
     }
 
 }
