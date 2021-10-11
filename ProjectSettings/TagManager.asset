@@ -12,6 +12,7 @@ TagManager:
   - NonShootable
   - PlayerBullet
   - ShootTrigger
+  - Spike
   layers:
   - Default
   - TransparentFX

@@ -19594,7 +19594,7 @@ MonoBehaviour:
   distanceBetweenImages: 0.2
   dashCooldown: 1.5
   cornerFixXOffset1: 0
-  cornerFixYOffset1: 2
+  cornerFixYOffset1: 1.5
   wallJumpDirection: {x: 1, y: 2}
 --- !u!50 &757472521907516542
 Rigidbody2D:
