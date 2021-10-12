@@ -6,28 +6,22 @@ public class SecretSequence : MonoBehaviour
 {
     private bool playerInRange;
     private bool secretUnlocked = false;
+    public float waitForAnimation = 0.80f;
     public GameObject Collectible;
+    public GameObject SpawnAnimation;
 
     private KeyCode[] sequence = new KeyCode[]
     {
-        KeyCode.T,
-        KeyCode.E,
-        KeyCode.S,
-        KeyCode.T,
-        //KeyCode.W,
-        //KeyCode.A,
-        //KeyCode.T,
-        //KeyCode.C,
-        //KeyCode.H,
-        //KeyCode.Space,
-        //KeyCode.T,
-        //KeyCode.H,
-        //KeyCode.E,
-        //KeyCode.Space,
-        //KeyCode.Y,
-        //KeyCode.A,
-        //KeyCode.R,
-        //KeyCode.D,
+        KeyCode.UpArrow,
+        KeyCode.UpArrow,
+        KeyCode.DownArrow,
+        KeyCode.DownArrow,
+        KeyCode.LeftArrow,
+        KeyCode.RightArrow,
+        KeyCode.LeftArrow,
+        KeyCode.RightArrow,
+        KeyCode.A,
+        KeyCode.B
     };
 
     private int sequenceIndex;
@@ -41,7 +35,7 @@ public class SecretSequence : MonoBehaviour
                 if (++sequenceIndex == sequence.Length)
                 {
                     secretUnlocked = true;
-                    Instantiate(Collectible, transform.position, Quaternion.identity);
+                    StartCoroutine(SpawnCollectible());
                 }
             }
             else if (Input.anyKeyDown)
@@ -49,6 +43,13 @@ public class SecretSequence : MonoBehaviour
                 sequenceIndex = 0;
             }
         }
+    }
+
+    IEnumerator SpawnCollectible()
+    {
+        Instantiate(SpawnAnimation, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(waitForAnimation);
+        Instantiate(Collectible, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
