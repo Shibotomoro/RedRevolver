@@ -12270,7 +12270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea85f3b0c7ba1764593b3618ac60ade4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitForAnimation: 0.8
   Collectible: {fileID: 3499719986212822322, guid: c027da45ca36a06478227ee035a770f7, type: 3}
+  SpawnAnimation: {fileID: 2157804832923225388, guid: 7159efb5478dbe945a6ce5d1912312ad, type: 3}
 --- !u!1 &969097395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1835869714077639001, guid: 8ddb79054dff3ef4eb66a3cc73c93ffa, type: 3}
@@ -38820,11 +38822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 757472521907516512, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.56
+      value: 17.09
       objectReference: {fileID: 0}
     - target: {fileID: 757472521907516512, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.55
+      value: 9.05
       objectReference: {fileID: 0}
     - target: {fileID: 757472521907516512, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_LocalPosition.z
