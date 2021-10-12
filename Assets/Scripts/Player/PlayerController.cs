@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dashDust;
     public ParticleSystem slideDust;
     public ParticleSystem wallJumpDust;
+    public ParticleSystem turnDust;
 
     public LayerMask whatIsGround;
 
@@ -600,6 +601,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isWallSliding && canFlip)
         {
+            turnDust.Play();
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);

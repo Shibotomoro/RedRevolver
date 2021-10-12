@@ -10,29 +10,16 @@ public class SecretSequence : MonoBehaviour
     public GameObject Collectible;
     public GameObject SpawnAnimation;
 
-    private KeyCode[] sequence = new KeyCode[]
-    {
-        KeyCode.UpArrow,
-        KeyCode.UpArrow,
-        KeyCode.DownArrow,
-        KeyCode.DownArrow,
-        KeyCode.LeftArrow,
-        KeyCode.RightArrow,
-        KeyCode.LeftArrow,
-        KeyCode.RightArrow,
-        KeyCode.A,
-        KeyCode.B
-    };
-
-    private int sequenceIndex;
+    private int dashCounter = 0;
 
     private void Update()
     {
         if (playerInRange && !secretUnlocked)
         {
-            if (Input.GetKeyDown(sequence[sequenceIndex]))
-            {
-                if (++sequenceIndex == sequence.Length)
+            if (Input.GetButtonDown("Horizontal"))
+            { 
+                dashCounter++;
+                if (dashCounter > 50)
                 {
                     secretUnlocked = true;
                     StartCoroutine(SpawnCollectible());
@@ -40,8 +27,13 @@ public class SecretSequence : MonoBehaviour
             }
             else if (Input.anyKeyDown)
             {
-                sequenceIndex = 0;
+                dashCounter = 0;
             }
+        }
+
+        if (!playerInRange)
+        {
+            dashCounter = 0;
         }
     }
 
