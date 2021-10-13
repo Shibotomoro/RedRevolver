@@ -24385,12 +24385,12 @@ MonoBehaviour:
   jumpForce: 16
   groundCheckRadius: 0.35
   wallCheckDistance: 0.65
-  wallSlideSpeed: 2
+  wallSlideSpeed: 1
   airDragMultiplier: 0.95
   variableJumpHeightMultiplier: 0.5
   wallJumpForce: 20
   jumpTimerSet: 0.15
-  turnTimerSet: 0.2
+  turnTimerSet: 0.1
   wallJumpTimerSet: 0.5
   coyoteTime: 0.15
   diagonalDashMultiplier: 0.7
@@ -24400,7 +24400,7 @@ MonoBehaviour:
   distanceBetweenImages: 0.2
   dashCooldown: 1.5
   cornerFixXOffset1: 0
-  cornerFixYOffset1: 1.5
+  cornerFixYOffset1: 1.6
   wallJumpDirection: {x: 1, y: 2}
 --- !u!50 &757472521907516542
 Rigidbody2D:
@@ -24492,7 +24492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757472522576536874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.267, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 757472521907516512}

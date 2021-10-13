@@ -601,7 +601,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isWallSliding && canFlip)
         {
-            turnDust.Play();
+            if (isGrounded)
+            {
+                turnDust.Play();
+            }
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
