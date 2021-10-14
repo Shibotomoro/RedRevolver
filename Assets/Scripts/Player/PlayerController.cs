@@ -51,6 +51,24 @@ public class PlayerController : MonoBehaviour
     private bool cornerDetected;
     private bool fixCornerDash;
 
+    //Wavedash variables
+    private bool isInAir;
+    private bool isWavedashDistanceToGround;
+    private bool recentlyJumped;
+    private bool diagonalDashDownDetected;
+    private bool wavedashInitiated;
+    private bool wavedashJumpBufferStore;
+    private bool addWavedashForceOnce;
+    private float recentJumpTimer = 2.0f;
+    private float recentJumpTimerSet = 2.0f;
+    private float diagonalDashDownDetectedTimer = 2.0f;
+    private float diagonalDashDownDetectedTimeSet = 2.0f;
+    [SerializeField] private float wavedashForce = 50f;
+    private float wavedashGroundDistanceCheck = 1f;
+    private bool turnOffMovingWhileWavedash;
+    private float waitForWavedashTimer = .1f;
+    private float waitForWavedashTimerSet = .1f;
+
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject bulletBehindPrefab;
@@ -144,6 +162,7 @@ public class PlayerController : MonoBehaviour
         CheckCornerFix();
         CheckIfCanDash();
         CheckDash();
+        CheckForWavedash();
         CheckDialogue();
         CheckDashParticle();
         CheckSurroundings();
@@ -323,6 +342,9 @@ public class PlayerController : MonoBehaviour
 
         isTouchingCorner = Physics2D.Raycast(cornerCheck.position, transform.right, wallCheckDistance, whatIsGround);
 
+        isWavedashDistanceToGround = Physics2D.Raycast(groundCheck.position, -transform.up, wavedashGroundDistanceCheck,
+            whatIsGround);
+
         if (!isTouchingWall && isTouchingCorner && !cornerDetected)
         {
             cornerDetected = true;
@@ -331,6 +353,60 @@ public class PlayerController : MonoBehaviour
         else
         {
             cornerDetected = false;
+        }
+
+        //Wavedash Checks
+        if (!isGrounded)
+        {
+            isInAir = true;
+        }
+        else
+        {
+            isInAir = false;
+        }
+
+        if (recentlyJumped)
+        {
+            recentJumpTimer -= Time.deltaTime;
+            if (recentJumpTimer <= 0)
+            {
+                recentlyJumped = false;
+            }
+
+            if (isGrounded && Input.GetButtonDown("Jump"))
+            {
+                recentJumpTimer = recentJumpTimerSet;
+            }
+        }
+        else
+        {
+            recentJumpTimer = recentJumpTimerSet;
+        }
+
+        if (diagonalDashDownDetected)
+        {
+            diagonalDashDownDetectedTimer -= Time.deltaTime;
+            if (diagonalDashDownDetectedTimer <= 0)
+            {
+                diagonalDashDownDetected = false;
+            }
+        }
+        else
+        {
+            diagonalDashDownDetectedTimer = diagonalDashDownDetectedTimeSet;
+        }
+        if (turnOffMovingWhileWavedash)
+        {
+            waitForWavedashTimer -= Time.deltaTime;
+            
+            if (waitForWavedashTimer <= 0)
+            {
+                turnOffMovingWhileWavedash = false;
+            }
+        }
+        else
+        {
+            waitForWavedashTimer = waitForWavedashTimerSet;
         }
     }
 
@@ -564,6 +640,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Wavedash Function
+    private void CheckForWavedash()
+    {
+        if (isInAir && recentlyJumped)
+        {
+            if (diagonalDashDownDetected)
+            {
+                wavedashInitiated = true;
+            }
+        }
+
+        if (wavedashInitiated)
+        {
+            if (Input.GetButtonDown("Jump") && isWavedashDistanceToGround)
+            {
+                wavedashJumpBufferStore = true;
+            }
+            if (isGrounded)
+            {
+                if (wavedashJumpBufferStore || Input.GetButtonDown("Jump"))
+                {
+                    addWavedashForceOnce = true;
+                    if (addWavedashForceOnce)
+                    {
+                        dashTimeLeft = 0;
+                        turnOffMovingWhileWavedash = true;
+                        RB.velocity = new Vector2(wavedashForce * facingDirection, jumpForce);
+                        Debug.Log("Bro we did it");
+                        wavedashJumpBufferStore = false;
+                    }
+                    diagonalDashDownDetected = false;
+                    wavedashInitiated = false;
+                }
+            }
+        }
+    }
+
+
     #endregion
 
     #region Other Functions
@@ -585,7 +699,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (canMove)
         {
-            RB.velocity = new Vector2(movementSpeed * RawMovementInputDirectionX, RB.velocity.y);
+            if (!turnOffMovingWhileWavedash)
+            {
+                RB.velocity = new Vector2(movementSpeed * RawMovementInputDirectionX, RB.velocity.y);
+            }
         }
 
         if (isWallSliding)
@@ -621,6 +738,7 @@ public class PlayerController : MonoBehaviour
             jumpTimer = 0;
             isAttemptingToJump = false;
             checkJumpMultiplier = true;
+            recentlyJumped = true;
         }
     }
 
@@ -644,6 +762,7 @@ public class PlayerController : MonoBehaviour
             hasWallJumped = true;
             wallJumpTimer = wallJumpTimerSet;
             lastWallJumpDirection = -facingDirection;
+            recentlyJumped = true;
         }
     }
 
@@ -685,6 +804,10 @@ public class PlayerController : MonoBehaviour
             else if (RawMovementInputDirectionX == 1 && RawMovementInputDirectionY == -1)
             {
                 ShootUpLeft();
+                if (isInAir)
+                {
+                    diagonalDashDownDetected = true;
+                }
             }
             else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == 1)
             {
@@ -693,6 +816,10 @@ public class PlayerController : MonoBehaviour
             else if (RawMovementInputDirectionX == -1 && RawMovementInputDirectionY == -1)
             {
                 ShootUpRight();
+                if (isInAir)
+                {
+                    diagonalDashDownDetected = true;
+                }
             }
         }
     }
@@ -756,6 +883,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - wavedashGroundDistanceCheck, groundCheck.position.z));
         Gizmos.DrawLine(wallCheck.position,
             new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
         Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x + wallCheckDistance, cornerCheck.position.y, cornerCheck.position.z));
