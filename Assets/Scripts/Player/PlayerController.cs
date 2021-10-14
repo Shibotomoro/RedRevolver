@@ -666,8 +666,7 @@ public class PlayerController : MonoBehaviour
                     {
                         dashTimeLeft = 0;
                         turnOffMovingWhileWavedash = true;
-                        RB.velocity = new Vector2(wavedashForce * facingDirection, jumpForce);
-                        Debug.Log("Bro we did it");
+                        RB.velocity = new Vector2(wavedashForce * facingDirection, jumpForce / 1.5f);
                         wavedashJumpBufferStore = false;
                     }
                     diagonalDashDownDetected = false;
