@@ -56,6 +56,9 @@ TagManager:
   - name: Middle Background
     uniqueID: 198265071
     locked: 0
+  - name: Semi Middle Ground
+    uniqueID: 3792482117
+    locked: 0
   - name: Obstacles
     uniqueID: 1109664013
     locked: 0
@@ -79,6 +82,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3834787517
+    locked: 0
+  - name: Semiforeground
+    uniqueID: 1399104545
     locked: 0
   - name: Foreground
     uniqueID: 3076091069
