@@ -54,20 +54,26 @@ public class PlayerController : MonoBehaviour
     //Wavedash variables
     private bool isInAir;
     private bool isWavedashDistanceToGround;
+    private bool isAutoJumpDistanceToGround;
     private bool recentlyJumped;
     private bool diagonalDashDownDetected;
     private bool wavedashInitiated;
     private bool wavedashJumpBufferStore;
-    private bool addWavedashForceOnce;
+    private bool turnOffMovingWhileWavedash;
+    private bool autoHopBasedOffDashTime;
     private float recentJumpTimer = 2.0f;
     private float recentJumpTimerSet = 2.0f;
     private float diagonalDashDownDetectedTimer = 2.0f;
     private float diagonalDashDownDetectedTimeSet = 2.0f;
-    [SerializeField] private float wavedashForce = 50f;
     private float wavedashGroundDistanceCheck = 1f;
-    private bool turnOffMovingWhileWavedash;
+    private float autoJumpGroundDistanceCheck = .1f;
     private float waitForWavedashTimer = .1f;
     private float waitForWavedashTimerSet = .1f;
+    private float autoHopDashTimeLeftTemp = 0f;
+    private float wavedashTimeLeftTemp = 0f;
+    [SerializeField] private float wavedashForce = 50f;
+    [SerializeField] private float wavedashJumpForceDivider = 1.5f;
+    [SerializeField] private float autoHopJumpForceDivider = 5f;
 
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -344,6 +350,8 @@ public class PlayerController : MonoBehaviour
 
         isWavedashDistanceToGround = Physics2D.Raycast(groundCheck.position, -transform.up, wavedashGroundDistanceCheck,
             whatIsGround);
+        isAutoJumpDistanceToGround = Physics2D.Raycast(groundCheck.position, -transform.up, autoJumpGroundDistanceCheck,
+            whatIsGround);
 
         if (!isTouchingWall && isTouchingCorner && !cornerDetected)
         {
@@ -533,16 +541,7 @@ public class PlayerController : MonoBehaviour
 
                 dashTimeLeft -= Time.deltaTime;
 
-                if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
-                {
-                    PlayerAfterImagePool.Instance.GetFromPool();
-                    lastImageXpos = transform.position.x;
-                }
-                if (Mathf.Abs(transform.position.y - lastImageYpos) > distanceBetweenImages)
-                {
-                    PlayerAfterImagePool.Instance.GetFromPool();
-                    lastImageYpos = transform.position.y;
-                }
+                AddAfterImages();
             }
 
             if (dashTimeLeft <= 0 || isTouchingWall)
@@ -661,18 +660,53 @@ public class PlayerController : MonoBehaviour
             {
                 if (wavedashJumpBufferStore || Input.GetButtonDown("Jump"))
                 {
-                    addWavedashForceOnce = true;
-                    if (addWavedashForceOnce)
-                    {
-                        dashTimeLeft = 0;
-                        turnOffMovingWhileWavedash = true;
-                        RB.velocity = new Vector2(wavedashForce * facingDirection, jumpForce / 1.5f);
-                        wavedashJumpBufferStore = false;
-                    }
-                    diagonalDashDownDetected = false;
-                    wavedashInitiated = false;
+                    wavedashTimeLeftTemp = dashTimeLeft;
+                    dashTimeLeft = 0;
+                    turnOffMovingWhileWavedash = true;
+                    wavedashJumpBufferStore = false;
                 }
+                else if (!wavedashJumpBufferStore || Input.GetButtonDown("Jump"))
+                {
+                    autoHopBasedOffDashTime = true;
+                }
+                diagonalDashDownDetected = false;
+                wavedashInitiated = false;
             }
+        }
+
+        if (wavedashTimeLeftTemp >= 0)
+        {
+            RB.velocity = new Vector2(wavedashForce * facingDirection, jumpForce / wavedashJumpForceDivider);
+            wavedashTimeLeftTemp -= Time.deltaTime;
+            AddAfterImages();
+        }
+
+        if (autoHopBasedOffDashTime && isAutoJumpDistanceToGround)
+        {
+            autoHopDashTimeLeftTemp = dashTimeLeft;
+            dashTimeLeft = 0;
+            turnOffMovingWhileWavedash = true;
+            autoHopBasedOffDashTime = false;
+        }
+        if (autoHopDashTimeLeftTemp >= 0)
+        {
+            RB.velocity = new Vector2(dashSpeed * facingDirection, jumpForce / autoHopJumpForceDivider);
+            autoHopDashTimeLeftTemp -= Time.deltaTime;
+            AddAfterImages();
+        }
+    }
+
+    private void AddAfterImages()
+    {
+        if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+        {
+            PlayerAfterImagePool.Instance.GetFromPool();
+            lastImageXpos = transform.position.x;
+        }
+        if (Mathf.Abs(transform.position.y - lastImageYpos) > distanceBetweenImages)
+        {
+            PlayerAfterImagePool.Instance.GetFromPool();
+            lastImageYpos = transform.position.y;
         }
     }
 
@@ -883,6 +917,7 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - wavedashGroundDistanceCheck, groundCheck.position.z));
+        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - autoJumpGroundDistanceCheck, groundCheck.position.z));
         Gizmos.DrawLine(wallCheck.position,
             new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
         Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x + wallCheckDistance, cornerCheck.position.y, cornerCheck.position.z));
