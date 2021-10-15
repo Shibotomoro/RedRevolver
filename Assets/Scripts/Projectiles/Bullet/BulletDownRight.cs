@@ -22,7 +22,7 @@ public class BulletDownRight : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.gameObject.tag != "Level" && hitInfo.gameObject.tag != "Player" && hitInfo.gameObject.tag != "NonShootable")
+        if (hitInfo.gameObject.tag != "Level" && hitInfo.gameObject.tag != "Player" && hitInfo.gameObject.tag != "NonShootable" && hitInfo.gameObject.tag != "Ammo")
         {
             EnemyDeath enemyDeath = hitInfo.GetComponent<EnemyDeath>();
             if (enemyDeath != null)
