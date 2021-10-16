@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = new Vector3(playerPosX, playerPosY, 0);
         }
+        TimeCount.instance.BeginTimer();
     }
 
     private void Update()
