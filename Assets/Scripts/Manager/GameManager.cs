@@ -19,13 +19,16 @@ public class GameManager : MonoBehaviour
 
     private int roomTracker = 0;
 
+    private void Start()
+    {
+        TimeCount.instance.BeginTimer();
+    }
     private void Awake()
     {
         if (reload)
         {
             player.transform.position = new Vector3(playerPosX, playerPosY, 0);
         }
-        TimeCount.instance.BeginTimer();
     }
 
     private void Update()
