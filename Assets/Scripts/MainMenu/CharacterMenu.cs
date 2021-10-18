@@ -67,6 +67,7 @@ public class CharacterMenu : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        TimeCount.instance.EndTimer();
         SceneManager.LoadScene("MainMenu");
     }
 }
