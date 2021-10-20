@@ -92,6 +92,3 @@ TagManager:
   - name: Weather
     uniqueID: 2218863625
     locked: 0
-  - name: Foreground Ornaments
-    uniqueID: 1076131145
-    locked: 0

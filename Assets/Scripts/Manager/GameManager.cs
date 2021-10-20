@@ -19,10 +19,6 @@ public class GameManager : MonoBehaviour
 
     private int roomTracker = 0;
 
-    private void Start()
-    {
-        TimeCount.instance.BeginTimer();
-    }
     private void Awake()
     {
         if (reload)
