@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 cornerPos1;
 
     private Camera cam;
+    public AudioSource[] audioSources;
 
     #endregion
 
@@ -147,6 +148,8 @@ public class PlayerController : MonoBehaviour
         amountOfJumpsLeft = amountOfJumps;
         wallJumpDirection.Normalize();
         cam = Camera.main;
+        audioSources = GetComponents<AudioSource>();
+        audioSources[0].Pause();
     }
 
     // Update is called once per frame
@@ -333,10 +336,13 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(RB.velocity.x) >= 0.01f)
         {
             isMoving = true;
+            audioSources[0].Play();
+            audioSources[0].UnPause();
         }
         else
         {
             isMoving = false;
+            audioSources[0].Pause();
         }
     }
 
@@ -803,6 +809,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canDash && amountOfBullets > 0)
         {
+            SoundManagerScript.PlaySound("playerDash");
             isDashing = true;
             dashTimeLeft = dashTime;
             lastDash = Time.time;
@@ -872,42 +879,49 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootBehind()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletBehindPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootDown()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletDownPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootUp()
-
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletUpPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootUpRight()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletUpRightPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootDownRight()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletDownRightPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootDownLeft()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletDownLeftPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ShootUpLeft()
     {
+        SoundManagerScript.PlaySound("playerShoot");
         Instantiate(bulletUpLeftPrefab, firePoint.position, firePoint.rotation);
     }
 

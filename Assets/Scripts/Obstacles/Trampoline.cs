@@ -25,6 +25,7 @@ public class Trampoline : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player"))
         {
+            SoundManagerScript.PlaySound("trampoline");
             isPushing = true;
             player.GetComponent<PlayerController>().dashTimeLeft = 0.0f;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.up * bounce;

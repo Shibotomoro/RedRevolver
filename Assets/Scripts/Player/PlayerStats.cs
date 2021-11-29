@@ -79,6 +79,7 @@ public class PlayerStats : MonoBehaviour
 
     public void Die()
     {
+        SoundManagerScript.PlaySound("playerDeath");
         Destroy(gameObject);
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         GM.Respawn();
