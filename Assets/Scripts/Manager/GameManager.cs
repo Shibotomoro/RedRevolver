@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         if (reload)
         {
+            SoundManagerScript.PlaySound("playerRespawn");
             player.transform.position = new Vector3(playerPosX, playerPosY, 0);
         }
     }
