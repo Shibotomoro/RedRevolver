@@ -24406,6 +24406,7 @@ MonoBehaviour:
   cornerFixXOffset1: 0
   cornerFixYOffset1: 1.6
   wallJumpDirection: {x: 1, y: 2}
+  audioSources: []
 --- !u!50 &757472521907516542
 Rigidbody2D:
   serializedVersion: 4

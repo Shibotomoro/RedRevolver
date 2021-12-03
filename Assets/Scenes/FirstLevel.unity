@@ -1899,11 +1899,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 757472521907516543, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 4
+      value: 2.0625
       objectReference: {fileID: 0}
     - target: {fileID: 757472521907516543, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0440b575da7bd48a5bc8f07d586b85, type: 3}
@@ -3742,7 +3742,7 @@ GameObject:
   - component: {fileID: 395027406}
   - component: {fileID: 395027405}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4268,6 +4268,7 @@ GameObject:
   - component: {fileID: 470594606}
   - component: {fileID: 470594607}
   - component: {fileID: 470594608}
+  - component: {fileID: 470594609}
   m_Layer: 2
   m_Name: Room2
   m_TagString: Level
@@ -4332,6 +4333,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 752723061}
+--- !u!114 &470594609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470594605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb5540811f33464eaa1b4042b8ba46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToPlay: Level 1 Music
 --- !u!1 &473124231
 GameObject:
   m_ObjectHideFlags: 0
@@ -46691,6 +46705,7 @@ GameObject:
   - component: {fileID: 956138769}
   - component: {fileID: 956138770}
   - component: {fileID: 956138771}
+  - component: {fileID: 956138772}
   m_Layer: 2
   m_Name: Room4
   m_TagString: Level
@@ -46757,6 +46772,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 886573835}
+--- !u!114 &956138772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956138768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb5540811f33464eaa1b4042b8ba46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToPlay: Level 1 Music
 --- !u!1 &962540174
 GameObject:
   m_ObjectHideFlags: 0
@@ -47102,6 +47130,7 @@ GameObject:
   - component: {fileID: 1003811648}
   - component: {fileID: 1003811649}
   - component: {fileID: 1003811650}
+  - component: {fileID: 1003811651}
   m_Layer: 2
   m_Name: Room5
   m_TagString: Level
@@ -47167,6 +47196,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 1901073358}
+--- !u!114 &1003811651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003811647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb5540811f33464eaa1b4042b8ba46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToPlay: Level 1 Music
 --- !u!1 &1026689066
 GameObject:
   m_ObjectHideFlags: 0
@@ -52071,6 +52113,7 @@ GameObject:
   - component: {fileID: 1757803376}
   - component: {fileID: 1757803377}
   - component: {fileID: 1757803378}
+  - component: {fileID: 1757803379}
   m_Layer: 2
   m_Name: Room3
   m_TagString: Level
@@ -52136,6 +52179,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 139250632}
+--- !u!114 &1757803379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757803375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb5540811f33464eaa1b4042b8ba46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToPlay: Level 1 Music
 --- !u!1 &1760580858
 GameObject:
   m_ObjectHideFlags: 0
@@ -54214,6 +54270,7 @@ GameObject:
   - component: {fileID: 2034361494}
   - component: {fileID: 2034361495}
   - component: {fileID: 2034361496}
+  - component: {fileID: 2034361497}
   m_Layer: 2
   m_Name: Room6
   m_TagString: Level
@@ -54280,6 +54337,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 1186157645}
+--- !u!114 &2034361497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034361493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb5540811f33464eaa1b4042b8ba46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToPlay: Level 1 Music
 --- !u!1 &2061722701
 GameObject:
   m_ObjectHideFlags: 0
