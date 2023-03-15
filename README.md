@@ -2,10 +2,10 @@
 A 2D Precision Platformer made in Unity by the members of the Video Game Development Club.  Based on a shooting mechanic that causes the player to dash.  Only 6 Bullets at a time, be sure to use them wisely.
 
 # Programmers/Members
-Jason Zhu
-McCain Duong
-Ted Liang
-Kevin Huynh
+* Jason Zhu
+* McCain Duong
+* Ted Liang
+* Kevin Huynh
 
 # How it Looks:
 Click for Youtube Link
